@@ -1,5 +1,5 @@
 {
-  "name": "one-ui",
+  "name": "vue-oneui",
   "version": "1.0.22",
   "main": "src/index.js",
   "dependencies": {
