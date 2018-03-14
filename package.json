@@ -1,6 +1,6 @@
 {
   "name": "vue-oneui",
-  "version": "1.0.22",
+  "version": "1.0.23",
   "main": "src/index.js",
   "dependencies": {
     "accounting": "^0.4.1",
@@ -16,8 +16,8 @@
     "ucfirst": "^1.0.0",
     "v-clipboard": "^1.0.4",
     "v-tooltip": "^2.0.0-rc.30",
-    "vue": "^2.5.15",
-    "vue-morphling": "^0.7.2",
+    "vue": "^2.5.16",
+    "vue-morphling": "^0.7.3",
     "vue-multiselect": "^2.0.8",
     "vue-notify-me": "^1.1.0",
     "vuetable-2": "^1.7.2",
