@@ -2,7 +2,7 @@
     <div :class="blockClasses">
         <ul class="nav nav-tabs">
             <li v-for="(tab, index) in tabs" :class="tabClasses(index)">
-                <a href="#" @click="setCurrent($event, index)">
+                <a href="#" @click.prevent="setCurrent(index)">
                     {{ tab.label }}
                 </a>
             </li>
@@ -62,9 +62,7 @@
                     active: index === this.current
                 };
             },
-            setCurrent(event, index) {
-                event.preventDefault();
-
+            setCurrent(index) {
                 this.current = index;
 
                 this.tabs.forEach((tab, position) => {
