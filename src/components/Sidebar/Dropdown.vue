@@ -1,6 +1,6 @@
 <template>
     <li :class="{ 'open': isOpen }">
-        <a href="javascript:void(0);" class="nav-submenu" @click="toggle">
+        <a href="#" class="nav-submenu" @click="toggle">
             <i :class="item.icon"></i><span class="sidebar-mini-hide">{{ item.title }}</span>
         </a>
 
@@ -36,6 +36,7 @@
         },
         methods: {
             toggle(event) {
+                event.preventDefault();
                 this.isOpen = !this.isOpen;
             }
         }
