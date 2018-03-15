@@ -1,6 +1,10 @@
 {
   "name": "vue-oneui",
-  "version": "1.0.24",
+  "version": "1.0.25",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vyuldashev/vue-oneui"
+  },
   "main": "src/index.js",
   "dependencies": {
     "accounting": "^0.4.1",
