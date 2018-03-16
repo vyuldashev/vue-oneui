@@ -16,6 +16,7 @@
     "jwt-decode": "^2.2.0",
     "lodash": "^4.17.5",
     "moment": "^2.21.0",
+    "notyf": "^2.0.1",
     "qs": "^6.5.1",
     "ucfirst": "^1.0.0",
     "v-clipboard": "^1.0.4",
