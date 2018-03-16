@@ -50,7 +50,11 @@
                 })
                 .on('changeDate', (e) => {
                     this.$emit('input', e.format());
-                });
+                })
+              .on('hide', event => {
+                event.preventDefault();
+                event.stopPropagation();
+              });
         }
     }
 </script>
