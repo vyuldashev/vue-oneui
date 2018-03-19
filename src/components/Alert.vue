@@ -1,7 +1,7 @@
 <template>
     <div :class="wrapperClass">
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true" v-if="dismissable">×</button>
-        <h3 class="font-w300 push-15">{{ title }}</h3>
+        <h3 class="font-w300 push-15" v-if="title">{{ title }}</h3>
         <p>{{ message }}</p>
     </div>
 </template>
