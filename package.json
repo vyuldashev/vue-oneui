@@ -1,6 +1,6 @@
 {
   "name": "vue-oneui",
-  "version": "1.0.27",
+  "version": "1.0.32",
   "repository": {
     "type": "git",
     "url": "https://github.com/vyuldashev/vue-oneui"
@@ -23,7 +23,7 @@
     "v-tooltip": "^2.0.0-rc.30",
     "vue": "^2.5.16",
     "vue-morphling": "^0.7.3",
-    "vue-multiselect": "^2.0.8",
+    "vue-multiselect": "^2.1.0",
     "vue-notify-me": "^1.1.0",
     "vuetable-2": "^1.7.2",
     "vuex": "^3.0.1",
