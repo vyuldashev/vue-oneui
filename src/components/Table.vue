@@ -136,6 +136,10 @@
                     {value: 50, label: '50'},
                     {value: 100, label: '100'}
                 ]
+            },
+            filterQueryParameter: {
+                type: String,
+                default: 'filters'
             }
         },
         data() {
@@ -189,9 +193,9 @@
             appendParams() {
                 let params = {};
 
-                each(this.filters, function (value, key) {
+                each(this.filters, (value, key) => {
                     if (value.length > 0) {
-                        params[`filters[${key}]`] = Array.isArray(value) ? value.join(',') : value;
+                        params[`${this.filterQueryParameter}[${key}]`] = Array.isArray(value) ? value.join(',') : value;
                     }
                 });
 
