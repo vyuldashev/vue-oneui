@@ -11,7 +11,7 @@ export default {
         this.create({type: 'alert', text: text}).show();
     },
     success(text) {
-        this.create({type: 'success', text: text).show();
+        this.create({type: 'success', text: text}).show();
     },
     warning(text) {
         this.create({type: 'warning', text: text}).show();
