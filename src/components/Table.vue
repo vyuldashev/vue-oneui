@@ -193,7 +193,7 @@
             appendParams() {
                 let params = {};
 
-                each(this.filters, function (value, key) {
+                each(this.filters, (value, key) => {
                     if (value.length > 0) {
                         params[`${this.filterQueryParameter}[${key}]`] = Array.isArray(value) ? value.join(',') : value;
                     }
