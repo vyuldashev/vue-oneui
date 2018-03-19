@@ -4,6 +4,11 @@ export default {
     create(parameters) {
         parameters.theme = 'bootstrap-v3';
         parameters.layout = 'topRight';
+        parameters.timeout = 5000;
+        parameters.animation = {
+            open: 'animated bounceInRight', // Animate.css class names
+            close: 'animated bounceOutRight' // Animate.css class names
+        };
 
         return new Noty(parameters);
     },
