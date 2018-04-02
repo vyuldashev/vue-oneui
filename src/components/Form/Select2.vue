@@ -68,6 +68,10 @@
             hasMore: {
                 type: Function,
                 default: ({links}) => links.next !== null
+            },
+            tags: {
+                type: Boolean,
+                default: false
             }
         },
         computed: {
@@ -148,7 +152,8 @@
             $(this.$refs.select)
                 .select2({
                     width: '100%',
-                    ajax: this.ajax
+                    ajax: this.ajax,
+                    tags: this.tags,
                 })
                 .on('select2:select select2:unselect', event => {
                     this.$emit('input', $(event.target).val() || this.defaultValue);
