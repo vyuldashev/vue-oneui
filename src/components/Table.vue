@@ -149,7 +149,8 @@
                     tableClass: 'table table-striped table-borderless table-vcenter',
                 },
                 pagination: {},
-                perPageModel: this.perPage  // Save perPage as prop
+                perPageModel: this.perPage,
+                filtersModel: this.filters,
             }
         },
         computed: {
@@ -193,7 +194,7 @@
             appendParams() {
                 let params = {};
 
-                each(this.filters, (value, key) => {
+                each(this.filtersModel, (value, key) => {
                     if (value.length > 0) {
                         params[`${this.filterQueryParameter}[${key}]`] = Array.isArray(value) ? value.join(',') : value;
                     }
@@ -205,7 +206,13 @@
                 const title = resolveRouteTitle(this.$route);
 
                 return `${title !== null ? title : 'Отчет'} ${moment().format('YYYY-MM-DD')}.csv`;
+            },
+            filtersCacheKey() {
+                return `table-filters-${this.$route.fullPath}`;
             }
+        },
+        beforeMount() {
+            this.restoreFilters();
         },
         methods: {
             httpFetch(apiUrl, httpOptions) {
@@ -240,11 +247,14 @@
                 this.$nextTick(() => this.$refs.vuetable.refresh());
             },
             onFilter() {
-                console.log('Table: onFilter', this.filters);
+                console.log('Table: onFilter', this.filtersModel);
 
                 this.reload();
 
-                this.$emit('filter', this.filters);
+                this.$emit('filter', this.filtersModel);
+
+                // remember filters
+                localStorage.setItem(this.filtersCacheKey, JSON.stringify(this.filtersModel));
             },
             onFilterReset() {
                 console.log('Table: onFilterReset');
@@ -252,7 +262,17 @@
                 this.reload();
 
                 this.$emit('filterReset');
-            }
+
+                // prune cached filters
+                localStorage.removeItem(this.filtersCacheKey);
+            },
+            restoreFilters() {
+                if (localStorage.getItem(this.filtersCacheKey) !== null) {
+                    const value = JSON.parse(localStorage.getItem(this.filtersCacheKey));
+                    this.filtersModel = value;
+                    this.$emit('restore-filters', value);
+                }
+            },
         }
     }
 </script>
