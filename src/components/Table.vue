@@ -149,7 +149,7 @@
                     tableClass: 'table table-striped table-borderless table-vcenter',
                 },
                 pagination: {},
-                perPageModel: this.perPage,
+                perPageModel: this.perPage,  // Save perPage as prop,
                 filtersModel: this.filters,
             }
         },
@@ -209,10 +209,18 @@
             },
             filtersCacheKey() {
                 return `table-filters-${this.$route.fullPath}`;
+            },
+            perPageCacheKey() {
+                return `table-perPage-${this.$route.fullPath}`;
             }
         },
         beforeMount() {
-            this.restoreFilters();
+            this.restoreContext();
+        },
+        watch: {
+            perPageModel(val) {
+                localStorage.setItem(this.perPageCacheKey, val);
+            }
         },
         methods: {
             httpFetch(apiUrl, httpOptions) {
@@ -266,11 +274,15 @@
                 // prune cached filters
                 localStorage.removeItem(this.filtersCacheKey);
             },
-            restoreFilters() {
+            restoreContext() {
                 if (localStorage.getItem(this.filtersCacheKey) !== null) {
                     const value = JSON.parse(localStorage.getItem(this.filtersCacheKey));
                     this.filtersModel = value;
                     this.$emit('restore-filters', value);
+                }
+
+                if (localStorage.getItem(this.perPageCacheKey) !== null) {
+                    this.perPageModel = parseInt(localStorage.getItem(this.perPageCacheKey));
                 }
             },
         }
