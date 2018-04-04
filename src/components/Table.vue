@@ -149,7 +149,7 @@
                     tableClass: 'table table-striped table-borderless table-vcenter',
                 },
                 pagination: {},
-                perPageModel: this.perPage,  // Save perPage as prop,
+                perPageModel: this.perPage,
                 filtersModel: this.filters,
             }
         },
@@ -207,24 +207,12 @@
 
                 return `${title !== null ? title : 'Отчет'} ${moment().format('YYYY-MM-DD')}.csv`;
             },
-            filtersCacheKey() {
-                return `table-filters-${this.$route.fullPath}`;
-            },
-            perPageCacheKey() {
-                return `table-perPage-${this.$route.fullPath}`;
-            }
         },
         beforeMount() {
-            this.restoreContext();
-        },
-        watch: {
-            perPageModel(val) {
-                localStorage.setItem(this.perPageCacheKey, val);
-            }
+            this.resolveFiltersFromQuery();
         },
         methods: {
             httpFetch(apiUrl, httpOptions) {
-                console.log(apiUrl);
                 return this.$http.get(apiUrl, httpOptions);
             },
             startedLoading() {
@@ -250,41 +238,37 @@
                 this.$refs.vuetable.setData(data);
             },
             reload() {
-                console.log('Table: reload');
-
                 this.$nextTick(() => this.$refs.vuetable.refresh());
             },
-            onFilter() {
-                console.log('Table: onFilter', this.filtersModel);
+            resolveFiltersFromQuery() {
+                const query = this.$route.query;
+                let model = {};
+
+                Object.keys(query).map(key => {
+                    const rawKey = key.replace(this.filterQueryParameter, '').replace('[', '').replace(']', '');
+
+                    model[rawKey] = query[key];
+                });
+
+                this.filtersModel = model;
+
+                this.$nextTick(() => {
+                    Object.assign(this.filters, model);
+                });
+            },
+            onFilter(val) {
+                this.filtersModel = val;
 
                 this.reload();
 
                 this.$emit('filter', this.filtersModel);
-
-                // remember filters
-                localStorage.setItem(this.filtersCacheKey, JSON.stringify(this.filtersModel));
             },
             onFilterReset() {
-                console.log('Table: onFilterReset');
+                this.resolveFiltersFromQuery();
 
                 this.reload();
 
                 this.$emit('filterReset');
-
-                // prune cached filters
-                localStorage.removeItem(this.filtersCacheKey);
-            },
-            restoreContext() {
-                if (localStorage.getItem(this.filtersCacheKey) !== null) {
-                    const value = JSON.parse(localStorage.getItem(this.filtersCacheKey));
-                    this.filtersModel = value;
-
-                    this.$emit('update:filters', value);
-                }
-
-                if (localStorage.getItem(this.perPageCacheKey) !== null) {
-                    this.perPageModel = parseInt(localStorage.getItem(this.perPageCacheKey));
-                }
             },
         }
     }

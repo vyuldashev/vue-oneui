@@ -104,7 +104,17 @@
         },
         methods: {
             submit() {
-                this.$emit('onFilter');
+                let query = {};
+
+                Object.keys(this.form).map(key => {
+                    if (this.form[key].length > 0) {
+                        query[`filters[${key}]`] = this.form[key];
+                    }
+                });
+
+                this.$router.push({path: this.$route.path, query: query});
+
+                this.$emit('onFilter', this.form);
             },
             reset() {
                 forEach(this.form, (value, key) => {
@@ -115,6 +125,10 @@
                         this.form[key] = '';
                     }
                 });
+
+                console.log(this.form);
+
+                this.$router.push({path: this.$route.path});
 
                 this.$emit('onFilterReset');
             },
