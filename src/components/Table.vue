@@ -278,7 +278,8 @@
                 if (localStorage.getItem(this.filtersCacheKey) !== null) {
                     const value = JSON.parse(localStorage.getItem(this.filtersCacheKey));
                     this.filtersModel = value;
-                    this.$emit('restore-filters', value);
+
+                    this.$emit('update:filters', value);
                 }
 
                 if (localStorage.getItem(this.perPageCacheKey) !== null) {
