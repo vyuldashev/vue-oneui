@@ -26,8 +26,8 @@
                     locale: 'ru',
                     sideBySide: true
                 })
-                .on('dp.change', event => {
-                    this.$emit('input', event.date.format('DD.MM.YYYY HH:mm'));
+                .on('dp.change', ({date}) => {
+                    this.$emit('input', date ? date.format('DD.MM.YYYY HH:mm') : '');
                 })
         }
     }
