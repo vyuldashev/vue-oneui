@@ -1,6 +1,6 @@
 <template>
     <div :id="id" class="modal fade" role="dialog" data-backdrop="static">
-        <div class="modal-dialog" role="document">
+        <div :class="['modal-dialog', dialogSize]" role="document">
             <div class="modal-content">
                 <div class="modal-header" v-if="title">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -33,6 +33,10 @@
                 required: true,
                 type: Boolean
             },
+            size: {
+                type: String,
+                default: 'normal'
+            }
         },
         watch: {
             show(val) {
@@ -49,6 +53,16 @@
         computed: {
             id() {
                 return 'modal-' + this._uid;
+            },
+            dialogSize(){
+                switch (this.size){
+                    case 'large':
+                        return 'modal-lg';
+                    case 'small':
+                        return 'modal-sm';
+                    default:
+                        return null;
+                }
             }
         },
         mounted() {
