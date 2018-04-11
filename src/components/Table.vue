@@ -6,7 +6,7 @@
                 @onFilter="onFilter"
                 @onFilterReset="onFilterReset"
                 :disabled="searchDisabled"
-                v-if="filters">
+                v-if="Object.keys(filters).length > 0">
             <slot name="filters"/>
         </v-filter>
 
@@ -111,7 +111,7 @@
             columns: Array,
             filters: {
                 type: Object,
-                default: null
+                default: () => ({})
             },
             options: {
                 type: Object,
