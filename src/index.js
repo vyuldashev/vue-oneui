@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import Sidebar from './components/Sidebar';
 import Block from './components/Block';
+import Info from './components/Info';
 import Modal from './components/Modal';
 import Alert from './components/Alert';
 import Table from './components/Table';
@@ -36,6 +37,7 @@ Vue.use(VueMorphling);
 const components = {
     Sidebar,
     Block,
+    Info,
     Modal,
     Alert,
     Table,
