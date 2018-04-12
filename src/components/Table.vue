@@ -150,7 +150,7 @@
                 },
                 pagination: {},
                 perPageModel: this.perPage,
-                filtersModel: this.filters,
+                filtersModel: {},
             }
         },
         computed: {
@@ -209,7 +209,7 @@
             },
         },
         beforeMount() {
-            this.resolveFiltersFromQuery();
+            this.resolveFilters();
         },
         methods: {
             httpFetch(apiUrl, httpOptions) {
@@ -240,15 +240,17 @@
             reload() {
                 this.$nextTick(() => this.$refs.vuetable.refresh());
             },
-            resolveFiltersFromQuery() {
+            resolveFilters() {
                 const query = this.$route.query;
-                let model = {};
+                let model = this.filters;
 
-                Object.keys(query).map(key => {
-                    const rawKey = key.replace(this.filterQueryParameter, '').replace('[', '').replace(']', '');
+                if (Object.keys(query).length > 0) {
+                    Object.keys(query).map(key => {
+                        const rawKey = key.replace(this.filterQueryParameter, '').replace('[', '').replace(']', '');
 
-                    model[rawKey] = query[key];
-                });
+                        model[rawKey] = query[key];
+                    });
+                }
 
                 this.filtersModel = model;
 
@@ -264,7 +266,7 @@
                 this.$emit('filter', this.filtersModel);
             },
             onFilterReset() {
-                this.resolveFiltersFromQuery();
+                this.resolveFilters();
 
                 this.reload();
 
