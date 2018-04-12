@@ -28,6 +28,10 @@
                 type: String,
                 default: null
             },
+            defaultItem: {
+                type: Object,
+                default: () => ({id: '', text: 'Не выбрано'}),
+            },
             items: {
                 type: Array,
                 default: () => ([])
@@ -84,10 +88,15 @@
                 return {
                     delay: this.delay,
                     processResults: response => {
-                        const items = Array.isArray(response) ? response : response.data;
+                        let items = [this.defaultItem];
+
+                        const results = Array.isArray(response) ? response : response.data;
+                        results.forEach(el => {
+                            items.push({id: this.resolvedValue(el), text: this.resolvedTitle(el)});
+                        });
 
                         return {
-                            results: items.map(el => ({id: this.resolvedValue(el), text: this.resolvedTitle(el)})),
+                            results: items,
                             pagination: {
                                 more: this.hasMore(response)
                             }
