@@ -1,14 +1,17 @@
 <template>
     <div class="wrapper">
         <form enctype="multipart/form-data" novalidate>
-            <label v-if="label">{{ label }}</label>
+            <div class="form-group" :class="{ 'has-error': hasErrors }">
+                <label v-if="label">{{ label }}</label>
 
-            <input type="file"
-                   ref="file-input"
-                   :name="name"
-                   :accept="accept"
-                   @change="filesChange($event.target.name, $event.target.files)"
-            />
+                <input type="file"
+                       ref="file-input"
+                       :name="name"
+                       :accept="accept"
+                       @change="filesChange($event.target.name, $event.target.files)"
+                />
+                <div class="help-block" v-if="hasErrors">{{ error }}</div>
+            </div>
         </form>
     </div>
 </template>
@@ -30,7 +33,9 @@
             },
             value: {
                 default: null
-            }
+            },
+            hasErrors: Boolean,
+            error: String
         },
         watch: {
             value(val) {
