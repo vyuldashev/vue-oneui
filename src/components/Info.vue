@@ -2,6 +2,9 @@
     <div class="row items-push">
         <div class="col-xs-12">
             <table class="table table-info table-striped table-borderless remove-margin-b">
+                <thead>
+                    <slot name="headers"/>
+                </thead>
                 <tbody>
                 <slot/>
                 </tbody>
