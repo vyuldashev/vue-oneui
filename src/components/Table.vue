@@ -66,7 +66,6 @@
     import Vue from 'vue';
     import Vuetable from 'vuetable-2/src/components/Vuetable';
     import moment from 'moment';
-    import transform from 'lodash/transform';
     import escape from 'lodash/escape';
     import each from 'lodash/each';
 
@@ -158,36 +157,36 @@
                 return 'table-block-' + this._uid;
             },
             fields() {
-                transform(this.columns, (result, value, key) => {
-                    // тип поля
-                    if (value.hasOwnProperty('type')) {
-                        switch (value.type) {
+                this.columns.forEach(column => {
+                    if (column.type) {
+                        switch (column.type) {
                             case 'date':
-                                value.callback = (val) => typeDate(val);
+                                column.callback = value => typeDate(value);
                                 break;
                             case 'datetime':
-                                value.callback = (val) => typeDate(val, true);
+                                column.callback = value => typeDate(value, true);
                                 break;
                             case 'money':
-                                value.callback = (val) => Vue.filter('money')(val);
+                                column.callback = value => Vue.filter('money')(value);
                                 break;
                         }
                     }
 
-                    if (!value.hasOwnProperty('callback')) {
-                        // ограничение на 60 символов
-                        value.callback = (val) => {
-                            if (val && val.length > 60) {
-                                val = escape(val);
-                                return '<span data-toggle="tooltip" data-placement="top" data-original-title="' + val + '">' + val.substring(0, 60) + '...</span>';
+                    if (!column.callback) {
+                        column.callback = value => {
+                            if (value && value.length > 60) {
+                                value = escape(value);
+                                return '<span data-toggle="tooltip" data-placement="top" data-original-title="' + value + '">' + value.substring(0, 60) + '...</span>';
                             }
 
-                            return escape(val);
+                            return escape(value);
                         }
                     }
+                });
 
-                    result[key] = value;
-                }, []);
+                this.$nextTick(() => {
+                    this.$refs.vuetable.normalizeFields();
+                });
 
                 return this.columns;
             },
