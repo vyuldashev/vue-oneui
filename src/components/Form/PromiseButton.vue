@@ -12,6 +12,10 @@
                 type: String,
                 default: 'primary'
             },
+            size: {
+                type: String,
+                default: null,
+            },
             onClick: {
                 type: Function,
                 default: () => Promise.resolve()
@@ -28,6 +32,7 @@
                 return {
                     'btn': true,
                     [`btn-${this.type}`]: true,
+                    [`btn-${this.size}`]: this.size !== null,
                     'btn-block': this.block
                 };
             },
