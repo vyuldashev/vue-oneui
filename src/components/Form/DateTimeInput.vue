@@ -17,6 +17,12 @@
                 type: String,
                 default: ''
             },
+            minDate: {
+                default: false
+            },
+            maxDate: {
+                default: false
+            },
             hasErrors: Boolean,
             error: String,
         },
@@ -24,7 +30,9 @@
             $(this.$refs.input)
                 .datetimepicker({
                     locale: 'ru',
-                    sideBySide: true
+                    sideBySide: true,
+                    minDate: this.minDate,
+                    maxDate: this.maxDate
                 })
                 .on('dp.change', ({date}) => {
                     this.$emit('input', date ? date.format('DD.MM.YYYY HH:mm') : '');
