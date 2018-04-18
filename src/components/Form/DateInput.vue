@@ -38,6 +38,14 @@
                 type: String,
                 default: null
             },
+            startDate: {
+                type: String,
+                default: null
+            },
+            endDate: {
+                type: String,
+                default: null
+            },
             hasErrors: Boolean,
             error: String,
         },
@@ -46,7 +54,9 @@
                 .datepicker({
                     format: 'dd.mm.yyyy',
                     autoclose: true,
-                    todayHighlight: true
+                    todayHighlight: true,
+                    startDate: this.startDate,
+                    endDate: this.endDate
                 })
                 .on('changeDate', (e) => {
                     this.$emit('input', e.format());
