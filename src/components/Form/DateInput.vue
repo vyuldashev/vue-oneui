@@ -38,11 +38,11 @@
                 type: String,
                 default: null
             },
-            startDate: {
+            minDate: {
                 type: String,
                 default: null
             },
-            endDate: {
+            maxDate: {
                 type: String,
                 default: null
             },
@@ -55,8 +55,8 @@
                     format: 'dd.mm.yyyy',
                     autoclose: true,
                     todayHighlight: true,
-                    startDate: this.startDate,
-                    endDate: this.endDate
+                    startDate: this.minDate,
+                    endDate: this.maxDate
                 })
                 .on('changeDate', (e) => {
                     this.$emit('input', e.format());
