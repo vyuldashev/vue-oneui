@@ -3,7 +3,7 @@
         <div class="col-xs-12">
             <table class="table table-info table-striped table-borderless remove-margin-b">
                 <thead>
-                    <slot name="headers"/>
+                <slot name="headers"/>
                 </thead>
                 <tbody>
                 <slot/>
@@ -21,5 +21,9 @@
     .table-info tr td:first-of-type {
         width: 20% !important;
         font-weight: bold;
+    }
+
+    .table-info tr td {
+        word-break: break-word;
     }
 </style>
