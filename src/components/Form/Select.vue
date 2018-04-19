@@ -3,7 +3,7 @@
         <label v-if="label">{{ label }}</label>
         <select class="form-control" @input="update" :value="value">
             <option></option>
-            <option v-for="item in items" :value="item.value">{{ item.title }}</option>
+            <option v-for="item in items" :value="item.value" :selected="item.value == value">{{ item.title }}</option>
         </select>
 
         <div class="help-block" v-if="hasErrors">{{ error }}</div>
