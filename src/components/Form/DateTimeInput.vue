@@ -25,11 +25,16 @@
             },
             hasErrors: Boolean,
             error: String,
+            format: {
+                type: [String, Boolean],
+                default: false
+            }
         },
         mounted() {
             $(this.$refs.input)
                 .datetimepicker({
                     locale: 'ru',
+                    format: this.format,
                     sideBySide: true,
                     minDate: this.minDate,
                     maxDate: this.maxDate
