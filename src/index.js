@@ -26,13 +26,21 @@ import TableFilter from './components/Table/Filter';
 import TablePagination from './components/Table/Paginators/Factory';
 import {Tab, TabList} from './components/TabList';
 
+import TileText from './components/Tiles/Text';
+
+import IconActivity from './components/Icons/Activity';
+import IconArrow from './components/Icons/Arrow';
+import IconSize from './components/Icons/Size';
+
 import Clipboard from 'v-clipboard';
 import VTooltip from 'v-tooltip';
 import VueMorphling from 'vue-morphling';
+import VueHighlightJS from 'vue-highlightjs'
 
 Vue.use(Clipboard);
 Vue.use(VTooltip);
 Vue.use(VueMorphling);
+Vue.use(VueHighlightJS);
 
 const components = {
     Sidebar,
@@ -63,7 +71,14 @@ const components = {
     TablePagination,
 
     TabList,
-    Tab
+    Tab,
+
+    TileText,
+
+    IconActivity,
+    IconArrow,
+    IconSize,
+
 };
 
 function plugin(Vue, opts = {prefix: 'oneui'}) {
