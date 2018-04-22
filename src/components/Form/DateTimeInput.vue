@@ -26,8 +26,8 @@
             hasErrors: Boolean,
             error: String,
             format: {
-                type: [String, Boolean],
-                default: false
+                type: String,
+                default: 'DD.MM.YYYY HH:mm'
             }
         },
         mounted() {
@@ -40,7 +40,7 @@
                     maxDate: this.maxDate
                 })
                 .on('dp.change', ({date}) => {
-                    this.$emit('input', date ? date.format('DD.MM.YYYY HH:mm') : '');
+                    this.$emit('input', date ? date.format(this.format) : '');
                 })
         }
     }
