@@ -56,6 +56,17 @@
                               :per-page="perPageModel"/>
                 </div>
 
+                <div class="row" v-if="paginationEnabled">
+                    <div class="col-sm-6 col-sm-push-6">
+                        <div class="text-right">
+                            <pagination :data="pagination"
+                                        @changePage="changePage"
+                                        @initialized="paginationInitialized"
+                            />
+                        </div>
+                    </div>
+                </div>
+
                 <slot name="table_append"/>
             </template>
         </v-block>
