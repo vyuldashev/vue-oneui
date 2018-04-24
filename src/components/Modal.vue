@@ -54,8 +54,8 @@
             id() {
                 return 'modal-' + this._uid;
             },
-            dialogSize(){
-                switch (this.size){
+            dialogSize() {
+                switch (this.size) {
                     case 'large':
                         return 'modal-lg';
                     case 'small':
@@ -69,6 +69,13 @@
             $('#' + this.id).on('hide.bs.modal', (e) => {
                 this.$emit('close');
             });
+        },
+        beforeDestroy() {
+            const elements = document.getElementsByClassName('modal-backdrop');
+            while(elements.length > 0){
+                elements[0].parentNode.removeChild(elements[0]);
+            }
+            document.body.classList.remove('modal-open');
         }
     }
 </script>
