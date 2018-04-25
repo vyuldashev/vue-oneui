@@ -7,6 +7,7 @@ import Alert from './components/Alert';
 import Table from './components/Table';
 import ActivityLog from './components/ActivityLog';
 import ActivityGatewayLog from './components/ActivityGatewayLog';
+import FormattedCode from './components/FormattedCode';
 
 import FormPromiseButton from './components/Form/PromiseButton';
 import FormButton from './components/Form/Button';
@@ -51,6 +52,7 @@ const components = {
     Table,
     ActivityLog,
     ActivityGatewayLog,
+    FormattedCode,
 
     FormPromiseButton,
     FormButton,

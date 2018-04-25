@@ -1,9 +1,10 @@
 <template>
-    <pre v-highlightjs="sourcecode"><code class="hljs" :class="codeClass">{{ formatted }}</code></pre>
+    <pre v-highlightjs="model" class="pre-sh"><code>{{ model }}</code></pre>
 </template>
 
 <script>
     import xmlFormatter from 'xml-formatter';
+    import isXml from 'is-xml';
 
     export default {
         props: {
@@ -12,58 +13,18 @@
             }
         },
         computed: {
-            codeClass() {
-                if (this.content === null) {
-                    return null;
+            model() {
+                let result = this.content;
+
+                if (isXml(result)) {
+                    result = xmlFormatter(result);
                 }
 
-                if (this.isJson(this.content)) {
-                    return 'json';
-                }
-
-                if (this.isXml(this.content)) {
-                    return 'xml';
-                }
-
-                return null;
-            },
-            formatted() {
-                if (this.content === null) {
-                    return null;
-                }
-
-                if (this.isJson(this.content)) {
-                    return JSON.parse(this.content);
-                }
-                if (this.isXml(this.content)) {
-                    return xmlFormatter(this.content);
-                }
-
-                return this.model.settings;
+                return result;
             }
         },
-        methods: {
-            isJson(value) {
-                try {
-                    return JSON.parse(value) && !!value;
-                } catch (e) {
-                    return false;
-                }
-            },
-            isXml(value) {
-                try {
-                    return (new DOMParser).parseFromString(value, 'text/xml').nodeName !== 'parsererror';
-                } catch (e) {
-                    return false;
-                }
-            },
-        },
         mounted() {
-            this.$nextTick(() => {
-                $('pre code.hljs').each(function (i, block) {
-                    hljs.highlightBlock(block);
-                });
-            });
+
         }
     }
 </script>

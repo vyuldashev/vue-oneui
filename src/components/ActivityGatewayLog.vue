@@ -13,14 +13,10 @@
                                       :disabled="true"/>
 
                     <b>Запрос</b>
-                    <pre class="pre-sh">
-                        <code class="hljs" :class="codeClass(props.item.properties.request)">{{ formatCode(props.item.properties.request) }}</code>
-                    </pre>
+                    <formatted-code :content="props.item.properties.request"/>
 
                     <b>Ответ</b>
-                    <pre class="pre-sh">
-                        <code class="hljs" :class="codeClass(props.item.properties.response)">{{ formatCode(props.item.properties.response) }}</code>
-                    </pre>
+                    <formatted-code :content="props.item.properties.response"/>
                 </div>
             </div>
         </activity-log>
@@ -30,10 +26,10 @@
 <script>
     import Vue from 'vue';
     import ActivityLog from './ActivityLog';
-    import xmlFormatter from 'xml-formatter';
+    import FormattedCode from './FormattedCode';
 
     export default {
-        components: {ActivityLog},
+        components: {ActivityLog, FormattedCode},
         props: {
             loading: Boolean,
             items: Array,
@@ -42,32 +38,6 @@
             filterDatetime(value) {
                 return Vue.filter('datetime')(value);
             },
-            codeClass(value) {
-                if (typeof value === 'object') {
-                    return 'json';
-                }
-
-                return 'xml';
-            },
-            formatCode(value) {
-                if (typeof value === 'object') {
-                    return value;
-                }
-
-                const xmlParser = new DOMParser();
-
-                if (xmlParser.parseFromString(value, "text/xml").nodeName !== "parsererror") {
-                    value = xmlFormatter(value);
-                }
-
-                this.$nextTick(() => {
-                    $('pre code').each(function (i, block) {
-                        hljs.highlightBlock(block);
-                    });
-                });
-
-                return value;
-            }
         },
     }
 </script>
