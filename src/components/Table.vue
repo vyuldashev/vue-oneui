@@ -76,7 +76,7 @@
 <script>
     import Vue from 'vue';
     import Vuetable from 'vuetable-2/src/components/Vuetable';
-    import moment from 'moment';
+    import moment from 'moment-timezone';
     import escape from 'lodash/escape';
     import each from 'lodash/each';
 

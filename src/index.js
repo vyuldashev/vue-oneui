@@ -95,3 +95,6 @@ function plugin(Vue, opts = {prefix: 'oneui'}) {
 require('./components/mixins/filters');
 
 export default plugin;
+export const settings = {
+    timezone: 'UTC'
+};

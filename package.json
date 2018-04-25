@@ -1,6 +1,6 @@
 {
   "name": "vue-oneui",
-  "version": "1.4.7",
+  "version": "1.5.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/vyuldashev/vue-oneui"
@@ -17,6 +17,7 @@
     "jwt-decode": "^2.2.0",
     "lodash": "^4.17.5",
     "moment": "^2.22.1",
+    "moment-timezone": "^0.5.16",
     "noty": "^3.2.0-beta",
     "qs": "^6.5.1",
     "ucfirst": "^1.0.0",

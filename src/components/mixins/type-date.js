@@ -1,4 +1,5 @@
-import moment from 'moment';
+import moment from 'moment-timezone';
+import {settings} from '../../index';
 
 export default (value, time = false) => {
     if (value === null || value.length === 0) {
@@ -7,5 +8,5 @@ export default (value, time = false) => {
 
     const format = time ? 'DD.MM.YYYY H:mm:ss' : 'DD.MM.YYYY';
 
-    return moment(value).format(format);
+    return moment.tz(value, 'UTC').tz(settings.timezone).format(format);
 };
