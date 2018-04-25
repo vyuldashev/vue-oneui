@@ -126,11 +126,11 @@
                     }
                 });
 
-                console.log(this.form);
-
                 this.$router.push({path: this.$route.path});
 
-                this.$emit('onFilterReset');
+                this.$nextTick(() => {
+                    this.$emit('onFilterReset');
+                });
             },
             openSearchHelper() {
                 this.searchHelper.isOpen = true;
