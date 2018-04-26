@@ -4,7 +4,7 @@
         <div ref="input" class="input-group date">
             <input type="text"
                    class="form-control"
-                   :value="value"
+                   :value="text"
                    :id="id"
                    :name="name"
                    placeholder="__.__.____"
@@ -16,6 +16,13 @@
     </div>
 </template>
 <script>
+    import moment from 'moment';
+
+    const formats = {
+        display: 'DD.MM.YYYY',
+        broadcast: 'DD.MM.YYYY HH:mm:ss'
+    };
+
     export default {
         props: {
             disabled: {
@@ -48,6 +55,17 @@
             },
             hasErrors: Boolean,
             error: String,
+            endOfDay: {
+                type: Boolean,
+                default: false
+            }
+        },
+        computed: {
+            text() {
+                if (this.value === '') return '';
+
+                return moment(this.value, formats.broadcast).format(formats.display);
+            }
         },
         mounted() {
             $(this.$refs.input)
@@ -58,13 +76,19 @@
                     startDate: this.minDate,
                     endDate: this.maxDate
                 })
-                .on('changeDate', (e) => {
-                    this.$emit('input', e.format());
+                .on('changeDate clearDate', (e) => {
+                    let value = e.format();
+
+                    if (e.date) {
+                        value = this.endOfDay ? `${value} 23:59:59` : `${value} 00:00:00`;
+                    }
+
+                    this.$emit('input', value);
                 })
-              .on('hide', event => {
-                event.preventDefault();
-                event.stopPropagation();
-              });
+                .on('hide', event => {
+                    event.preventDefault();
+                    event.stopPropagation();
+                });
         }
     }
 </script>
