@@ -55,16 +55,27 @@
             },
             hasErrors: Boolean,
             error: String,
-            endOfDay: {
-                type: Boolean,
-                default: false
-            }
+            startOfDay: Boolean,
+            endOfDay: Boolean
         },
         computed: {
             text() {
                 if (this.value === '') return '';
 
                 return moment(this.value, formats.broadcast).format(formats.display);
+            }
+        },
+        methods: {
+            resolveDateString(value) {
+                if (this.startOfDay) {
+                    return `${value} 00:00:00`;
+                }
+
+                if (this.endOfDay) {
+                    return `${value} 23:59:59`;
+                }
+
+                return value;
             }
         },
         mounted() {
@@ -77,13 +88,7 @@
                     endDate: this.maxDate
                 })
                 .on('changeDate clearDate', (e) => {
-                    let value = e.format();
-
-                    if (e.date) {
-                        value = this.endOfDay ? `${value} 23:59:59` : `${value} 00:00:00`;
-                    }
-
-                    this.$emit('input', value);
+                    this.$emit('input', e.date ? this.resolveDateString(e.format()) : '');
                 })
                 .on('hide', event => {
                     event.preventDefault();
