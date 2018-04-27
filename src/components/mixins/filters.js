@@ -4,16 +4,17 @@ import typeDate from './type-date';
 import accounting from 'accounting';
 import {settings} from '../../index';
 
-Vue.filter('datetime', (value) => {
-    return typeDate(value, true);
+Vue.filter('datetime', (value, fromTz = 'UTC') => {
+    console.log(value, fromTz);
+    return typeDate(value, true, fromTz);
 });
 
-Vue.filter('moment-from-now', (value) => {
-    return moment.tz(value, 'UTC').tz(settings.timezone).fromNow();
+Vue.filter('moment-from-now', (value, fromTz = 'UTC') => {
+    return moment.tz(value, fromTz).tz(settings.timezone).fromNow();
 });
 
-Vue.filter('date', (value) => {
-    return typeDate(value, false);
+Vue.filter('date', (value, fromTz = 'UTC') => {
+    return typeDate(value, false, fromTz);
 });
 
 Vue.filter('check', (value) => {
