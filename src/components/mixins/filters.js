@@ -5,7 +5,6 @@ import accounting from 'accounting';
 import {settings} from '../../index';
 
 Vue.filter('datetime', (value, fromTz = 'UTC') => {
-    console.log(value, fromTz);
     return typeDate(value, true, fromTz);
 });
 
