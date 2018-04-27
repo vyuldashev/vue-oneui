@@ -79,6 +79,7 @@
     import moment from 'moment-timezone';
     import escape from 'lodash/escape';
     import each from 'lodash/each';
+    import isPlainObject from 'lodash/isPlainObject';
 
     import VBlock from './Block';
     import VFilter from './Table/Filter';
@@ -170,16 +171,22 @@
             fields() {
                 this.columns.forEach(column => {
                     if (column.type) {
-                        switch (column.type) {
-                            case 'date':
-                                column.callback = value => typeDate(value);
-                                break;
-                            case 'datetime':
-                                column.callback = value => typeDate(value, true);
-                                break;
-                            case 'money':
-                                column.callback = value => Vue.filter('money')(value);
-                                break;
+                        if (typeof column.type === 'string') {
+                            switch (column.type) {
+                                case 'date':
+                                    column.callback = value => typeDate(value);
+                                    break;
+                                case 'datetime':
+                                    column.callback = value => typeDate(value, true);
+                                    break;
+                                case 'money':
+                                    column.callback = value => Vue.filter('money')(value);
+                                    break;
+                            }
+                        }
+
+                        if (isPlainObject(column.type)) {
+                            column.callback = value => Vue.filter(column.type.name)(value, ...column.type.args);
                         }
                     }
 
@@ -282,6 +289,7 @@
 
                 this.$emit('filterReset');
             },
+
         },
         mounted() {
             $('.table-responsive').on('shown.bs.dropdown', function (e) {
