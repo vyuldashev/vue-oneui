@@ -18,6 +18,9 @@
         <div class="block-content block-content-full">
             <slot name="content"></slot>
         </div>
+        <div class="block-content block-content-full bg-gray-lighter" v-if="$slots['footer']">
+            <slot name="footer"/>
+        </div>
     </div>
 </template>
 <script>
