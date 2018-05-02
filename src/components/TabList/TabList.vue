@@ -1,6 +1,6 @@
 <template>
     <div :class="blockClasses">
-        <ul class="nav nav-tabs">
+        <ul class="nav nav-tabs nav-tabs-alt">
             <li v-for="(tab, index) in tabs" :class="tabClasses(index)">
                 <a href="#" @click.prevent="setCurrent(index)">
                     {{ tab.label }}
