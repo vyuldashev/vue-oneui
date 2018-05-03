@@ -10,21 +10,20 @@
             </template>
             <template slot="content">
                 <slot/>
-
-                <div class="form-group text-right">
-                    <button class="btn btn-default" @click="submit" :disabled="loading || disabled">
+            </template>
+            <div slot="footer" class="text-right">
+                <button class="btn btn-default" @click="submit" :disabled="loading || disabled">
                         <span v-if="!loading">
                             <i class="si si-magnifier"/>
                             Поиск
                         </span>
-                        <span v-else><i class="fa fa-cog fa-spin"/></span>
-                    </button>
+                    <span v-else><i class="fa fa-cog fa-spin"/></span>
+                </button>
 
-                    <button class="btn btn-default" @click="reset" v-if="!loading">
-                        <span><i class="si si-reload"/></span>
-                    </button>
-                </div>
-            </template>
+                <button class="btn btn-default" @click="reset" v-if="!loading" v-tooltip="'Сбросить фильтры'">
+                    <span><i class="si si-reload"/></span>
+                </button>
+            </div>
         </v-block>
 
         <oneui-modal title="Расширенный поисковый запрос" :show="searchHelper.isOpen" @close="closeSearchHelper">
