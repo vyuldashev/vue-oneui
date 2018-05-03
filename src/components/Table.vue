@@ -161,6 +161,7 @@
                 },
                 pagination: {},
                 perPageModel: this.perPage,
+                originalFilters: {},
                 filtersModel: {},
             }
         },
@@ -226,6 +227,7 @@
             },
         },
         beforeMount() {
+            Object.assign(this.originalFilters, this.filters);
             this.resolveFilters();
         },
         methods: {
@@ -260,14 +262,22 @@
             resolveFilters() {
                 const query = this.$route.query;
                 let model = this.filters;
+                let filled = [];
 
                 if (Object.keys(query).length > 0) {
                     Object.keys(query).map(key => {
                         const rawKey = key.replace(this.filterQueryParameter, '').replace('[', '').replace(']', '');
 
                         model[rawKey] = query[key];
+                        filled.push(rawKey);
                     });
                 }
+
+                Object.keys(this.filters)
+                    .filter(key => filled.indexOf(key) === -1)
+                    .map(key => {
+                        model[key] = this.originalFilters[key];
+                    });
 
                 this.filtersModel = model;
 
