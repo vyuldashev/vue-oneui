@@ -16,9 +16,15 @@
             </button>
             <ul class="dropdown-menu pull-right">
                 <li v-for="action in actions">
-                    <a href="#" @click="click(action)" v-tooltip="action.tooltip">
-                        {{ action.value }}
-                    </a>
+                    <template v-if="checkCondition(action)">
+                        <a href="#" @click="click(action)" v-tooltip="action.tooltip" v-if="action.method">
+                            {{ action.value }}
+                        </a>
+
+                        <router-link :to="action.routerLink" v-if="action.routerLink" v-tooltip="action.tooltip">
+                            {{ action.value }}
+                        </router-link>
+                    </template>
                 </li>
             </ul>
         </template>
@@ -26,6 +32,8 @@
 </template>
 
 <script>
+    import isFunction from 'lodash/isFunction';
+
     export default {
         props: {
             rowData: {
@@ -41,6 +49,13 @@
         methods: {
             click(action) {
                 this[action.method]();
+            },
+            checkCondition(action) {
+                if (!isFunction(action.condition)) {
+                    return true;
+                }
+
+                return action.condition();
             }
         }
     }
