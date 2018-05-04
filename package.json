@@ -1,6 +1,6 @@
 {
   "name": "vue-oneui",
-  "version": "1.6.4",
+  "version": "1.6.5",
   "repository": {
     "type": "git",
     "url": "https://github.com/vyuldashev/vue-oneui"
@@ -19,7 +19,7 @@
     "moment": "^2.22.1",
     "moment-timezone": "^0.5.16",
     "noty": "^3.2.0-beta",
-    "qs": "^6.5.1",
+    "qs": "^6.5.2",
     "ucfirst": "^1.0.0",
     "v-clipboard": "^1.0.4",
     "v-tooltip": "^2.0.0-rc.30",
