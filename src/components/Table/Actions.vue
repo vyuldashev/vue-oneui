@@ -1,10 +1,17 @@
 <template>
     <div class="btn-group btn-group-xs">
-        <template v-if="actions.length === 1">
-            <a @click="click(actions[0])" class="btn btn-default" v-tooltip="actions[0].tooltip">
+        <template v-if="actions.length === 1 && checkCondition(actions[0])">
+            <a @click="click(actions[0])" class="btn btn-default" v-tooltip="actions[0].tooltip"
+               v-if="actions[0].method">
                 <i :class="actions[0].icon" v-if="actions[0].icon"/>
                 <template v-else>{{ actions[0].value }}</template>
             </a>
+
+            <router-link class="btn btn-default" :to="actions[0].routerLink" v-if="actions[0].routerLink"
+                         v-tooltip="actions[0].tooltip">
+                <i :class="actions[0].icon" v-if="actions[0].icon"/>
+                <template v-else>{{ actions[0].value }}</template>
+            </router-link>
         </template>
 
         <template v-if="actions.length > 1">
