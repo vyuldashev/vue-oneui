@@ -24,7 +24,7 @@
             <ul class="dropdown-menu pull-right">
                 <li v-for="action in actions">
                     <template v-if="checkCondition(action)">
-                        <a href="#" @click="click(action)" v-tooltip="action.tooltip" v-if="action.method">
+                        <a href="#" @click.prevent="click(action)" v-tooltip="action.tooltip" v-if="action.method">
                             {{ action.value }}
                         </a>
 
