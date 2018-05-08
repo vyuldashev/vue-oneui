@@ -1,4 +1,5 @@
 import Vue from 'vue';
+import VueI18n from 'vue-i18n';
 import Sidebar from './components/Sidebar';
 import Block from './components/Block';
 import Info from './components/Info';
@@ -42,6 +43,7 @@ Vue.use(Clipboard);
 Vue.use(VTooltip);
 Vue.use(VueMorphling);
 Vue.use(VueHighlightJS);
+Vue.use(VueI18n);
 
 const components = {
     Sidebar,
@@ -95,6 +97,8 @@ function plugin(Vue, opts = {prefix: 'oneui'}) {
 require('./components/mixins/filters');
 
 export default plugin;
+
 export const settings = {
-    timezone: 'UTC'
+    timezone: 'UTC',
+    language: 'en',
 };
