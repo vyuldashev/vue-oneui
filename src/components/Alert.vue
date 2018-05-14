@@ -1,6 +1,8 @@
 <template>
     <div :class="wrapperClass">
-        <button type="button" class="close" data-dismiss="alert" aria-hidden="true" v-if="dismissable">×</button>
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true" v-if="dismissable" @click="dismiss">
+            ×
+        </button>
         <h3 class="font-w300 push-15" v-if="title">{{ title }}</h3>
         <p>{{ message }}</p>
     </div>
@@ -29,6 +31,11 @@
                 }
 
                 return wrapperClass;
+            }
+        },
+        methods: {
+            dismiss() {
+                this.$emit('dismissed');
             }
         }
     }
