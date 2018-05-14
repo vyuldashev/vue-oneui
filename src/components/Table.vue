@@ -21,7 +21,7 @@
                     <div class="col-sm-6 text-right-xs">
                         <label>
                             Показать записей:
-                            <select class="form-control input-sm" v-model="perPageModel" @change="reload">
+                            <select class="form-control input-sm" v-model="perPageModel" @change="handlePerPageChanged">
                                 <option v-for="item in perPageOptions" :value="item.value">
                                     {{ item.label }}
                                 </option>
@@ -299,7 +299,10 @@
 
                 this.$emit('filterReset');
             },
-
+            handlePerPageChanged() {
+                this.reload();
+                this.$emit('perPageChanged', this.perPageModel);
+            }
         },
         mounted() {
             $('.table-responsive').on('shown.bs.dropdown', function (e) {
