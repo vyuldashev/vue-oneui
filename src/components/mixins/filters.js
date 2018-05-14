@@ -25,5 +25,5 @@ Vue.filter('money', (value, precision = 2, currency = '') => {
 });
 
 Vue.filter('optional', (value, replace = 'Нет данных') => {
-    return !value || value.length === 0 ? value : replace;
+    return !value || value.length === 0 ? replace : value;
 });
