@@ -23,3 +23,7 @@ Vue.filter('check', (value) => {
 Vue.filter('money', (value, precision = 2, currency = '') => {
     return accounting.formatMoney(value, currency, precision, ' ', '.');
 });
+
+Vue.filter('optional', (value, replace = 'Нет данных') => {
+    return !value || value.length === 0 ? value : replace;
+});
