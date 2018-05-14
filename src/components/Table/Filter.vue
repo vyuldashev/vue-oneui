@@ -2,7 +2,7 @@
     <div>
         <v-block :title="title" @keyup.enter.native="submit">
             <template slot="options">
-                <li>
+                <li v-if="settings.showSearchHelper">
                     <button type="button" ref="hint" @click="openSearchHelper">
                         <i class="si si-question"></i>
                     </button>
@@ -74,6 +74,7 @@
 </template>
 
 <script>
+    import {settings} from '../../index';
     import forEach from 'lodash/forEach';
 
     import VBlock from '../Block';
@@ -96,7 +97,8 @@
             initialForm: {},
             searchHelper: {
                 isOpen: false
-            }
+            },
+            settings: settings.table,
         }),
         created() {
             Object.assign(this.initialForm, this.form);
