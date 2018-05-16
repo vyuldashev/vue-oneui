@@ -54,6 +54,9 @@
             id() {
                 return 'modal-' + this._uid;
             },
+            modalElement() {
+                return $('#' + this.id);
+            },
             dialogSize() {
                 switch (this.size) {
                     case 'large':
@@ -66,9 +69,13 @@
             }
         },
         mounted() {
-            $('#' + this.id).on('hide.bs.modal', (e) => {
+            this.modalElement.on('hide.bs.modal', (e) => {
                 this.$emit('close');
             });
+
+            if (this.show) {
+                this.modalElement.modal('show');
+            }
         },
         beforeDestroy() {
             const elements = document.getElementsByClassName('modal-backdrop');

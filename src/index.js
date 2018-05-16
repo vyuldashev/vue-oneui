@@ -26,6 +26,7 @@ import FormFileUpload from './components/Form/FileUpload';
 import FormMultiSelect from 'vue-multiselect'; // TODO обернуть в компонент кастомный
 import TableFilter from './components/Table/Filter';
 import TablePagination from './components/Table/Paginators/Factory';
+
 import {Tab, TabList} from './components/TabList';
 
 import TileText from './components/Tiles/Text';
