@@ -6,7 +6,7 @@
                 @onFilter="onFilter"
                 @onFilterReset="onFilterReset"
                 :disabled="searchDisabled"
-                v-if="Object.keys(filters).length > 0">
+                v-if="filtersResolved && Object.keys(filters).length > 0">
             <slot name="filters"/>
         </v-filter>
 
@@ -163,6 +163,7 @@
                 perPageModel: this.perPage,
                 originalFilters: {},
                 filtersModel: {},
+                filtersResolved: false,
             }
         },
         computed: {
@@ -283,6 +284,7 @@
 
                 this.$nextTick(() => {
                     Object.assign(this.filters, model);
+                    this.filtersResolved = true;
                 });
             },
             onFilter(val) {

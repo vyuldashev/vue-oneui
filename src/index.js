@@ -12,6 +12,7 @@ import FormattedCode from './components/FormattedCode';
 
 import FormPromiseButton from './components/Form/PromiseButton';
 import FormButton from './components/Form/Button';
+import FormCard from './components/Form/Card';
 import FormCheckbox from './components/Form/Checkbox';
 import FormRadio from './components/Form/Radio';
 import FormInput from './components/Form/Input';
@@ -59,6 +60,7 @@ const components = {
 
     FormPromiseButton,
     FormButton,
+    FormCard,
     FormCheckbox,
     FormRadio,
     FormInput,
