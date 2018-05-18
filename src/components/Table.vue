@@ -258,7 +258,10 @@
                 this.$refs.vuetable.setData(data);
             },
             reload() {
-                this.$nextTick(() => this.$refs.vuetable.refresh());
+                this.$nextTick(() => {
+                    this.$refs.vuetable.resetData();
+                    this.$refs.vuetable.refresh();
+                });
             },
             resolveFilters() {
                 const query = this.$route.query;
