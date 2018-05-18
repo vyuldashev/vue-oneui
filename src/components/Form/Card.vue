@@ -24,7 +24,7 @@
                     >
 
                     <div class="row">
-                        <div class="col-md-7">
+                        <div class="col-md-6">
                             <label class="label" :style="{ color: instance.textColor }">
                                 Владелец
                             </label>
@@ -37,7 +37,7 @@
                                    autocomplete="off">
                         </div>
 
-                        <div class="col-md-5">
+                        <div class="col-md-6">
                             <label class="label" :style="{ color: instance.textColor }">
                                 Срок действия
                             </label>
@@ -65,6 +65,7 @@
                        id="code"
                        type="password"
                        placeholder=""
+                       maxlength="4"
                        autocomplete="off">
             </div>
         </div>
@@ -141,110 +142,3 @@
         }
     }
 </script>
-
-<style lang="scss" scoped>
-    $cards-padding: 32px;
-    $bank-logo-width: 320px;
-    $bank-logo-height: 60px;
-
-    #cards {
-        width: 585px;
-        height: 300px;
-        position: relative;
-        margin: 0 auto;
-
-        #front, #back {
-            position: absolute;
-            width: 435px;
-            height: 270px;
-            border-radius: 0.5em;
-        }
-
-        #front {
-            top: 0;
-            left: 0;
-            background: #ddd;
-            z-index: 100;
-        }
-
-        #number {
-            width: 100%;
-            margin-bottom: 0.3em;
-            color: #000000;
-        }
-
-        #front-fields {
-            position: absolute;
-            top: $bank-logo-height + 40;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            padding: $cards-padding;
-        }
-
-        #bank-link {
-            position: absolute;
-            top: $cards-padding;
-            right: $cards-padding;
-            left: $cards-padding;
-            width: $bank-logo-width;
-            height: $bank-logo-height;
-            display: block;
-            background-size: contain;
-            background-position: top left;
-            background-repeat: no-repeat;
-        }
-
-        #brand-logo {
-            position: absolute;
-            top: 2.5em;
-            //bottom: 1em;
-            right: $cards-padding;
-            text-align: right;
-            height: 48px;
-        }
-
-        #back {
-            bottom: 0;
-            right: 0;
-            background: #bbb;
-            padding-top: 1em;
-            padding-right: 1em;
-            padding-left: 10.5em;
-        }
-
-        #code {
-            width: 100px;
-            float: right;
-        }
-        #code-label {
-            text-align: right;
-            font-size: 1.35em;
-            white-space: normal;
-        }
-
-        .field {
-            width: 100%;
-            padding: 0.3em 0.5em;
-            border: none;
-            text-indent: 0.1em;
-            color: #000000;
-        }
-
-        .expired {
-            float: left;
-            width: 4.5em;
-            margin-right: 0.1em;
-            padding: 0;
-        }
-
-        .label {
-            display: block;
-            margin-top: 0.5em;
-            text-align: left;
-            padding: 0;
-            color: #000000;
-            font-size: 100%;
-        }
-    }
-</style>
