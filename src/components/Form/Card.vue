@@ -51,7 +51,7 @@
                             <oneui-form-select
                                     v-model="value.year"
                                     :items="yearOptions"
-                                    class="field expired"
+                                    class="field expired year"
                             />
                         </div>
                     </div>
