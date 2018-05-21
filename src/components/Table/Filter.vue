@@ -1,6 +1,6 @@
 <template>
     <div>
-        <v-block :title="title" @keyup.enter.native="submit">
+        <v-block :title="blockTitle" @keyup.enter.native="submit">
             <template slot="options">
                 <li v-if="settings.showSearchHelper">
                     <button type="button" ref="hint" @click="openSearchHelper">
@@ -15,12 +15,12 @@
                 <button class="btn btn-default" @click="submit" :disabled="loading || disabled">
                         <span v-if="!loading">
                             <i class="si si-magnifier"/>
-                            Поиск
+                            {{ $t('search') }}
                         </span>
                     <span v-else><i class="fa fa-cog fa-spin"/></span>
                 </button>
 
-                <button class="btn btn-default" @click="reset" v-if="!loading" v-tooltip="'Сбросить фильтры'">
+                <button class="btn btn-default" @click="reset" v-if="!loading" v-tooltip="$t('reset')">
                     <span><i class="si si-reload"/></span>
                 </button>
             </div>
@@ -84,7 +84,6 @@
         props: {
             title: {
                 type: String,
-                default: 'Поиск'
             },
             form: Object,
             loading: Boolean,
@@ -100,6 +99,11 @@
             },
             settings: settings.table,
         }),
+        computed: {
+            blockTitle() {
+                return this.title ? this.title : this.$t('search');
+            }
+        },
         created() {
             Object.assign(this.initialForm, this.form);
         },
@@ -146,7 +150,19 @@
                 trigger: 'hover',
                 placement: 'left'
             });
-        }
+        },
+        i18n: {
+            messages: {
+                en: {
+                    search: 'Search',
+                    reset: 'Reset',
+                },
+                ru: {
+                    search: 'Поиск',
+                    reset: 'Сбросить фильтры',
+                },
+            },
+        },
     }
 </script>
 

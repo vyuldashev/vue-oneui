@@ -26,10 +26,10 @@
                     <div class="row">
                         <div class="col-md-6">
                             <label class="label" :style="{ color: instance.textColor }">
-                                Владелец
+                                {{ $t('cardholder') }}
                             </label>
                             <input v-model="value.cardHolder"
-                                   v-tooltip.bottom="'Введите unembossed если карта неименная'"
+                                   v-tooltip.bottom="$t('cardholder_tooltip')"
                                    class="field"
                                    id="name"
                                    type="text"
@@ -39,7 +39,7 @@
 
                         <div class="col-md-6">
                             <label class="label" :style="{ color: instance.textColor }">
-                                Срок действия
+                                {{ $t('expiration') }}
                             </label>
 
                             <oneui-form-select
@@ -139,6 +139,20 @@
             numberChanged(value) {
                 this.value.number = value.replace(/\s/g, '');
             }
-        }
+        },
+        i18n: {
+            messages: {
+                en: {
+                    cardholder: 'Cardholder',
+                    cardholder_tooltip: 'Type unembossed if your card is unnamed',
+                    expiration: 'Expiration',
+                },
+                ru: {
+                    cardholder: 'Владелец',
+                    cardholder_tooltip: 'Введите unembossed если карта неименная',
+                    expiration: 'Срок действия',
+                },
+            }
+        },
     }
 </script>

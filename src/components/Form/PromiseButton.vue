@@ -1,7 +1,7 @@
 <template>
     <button type="button" :class="classes" @click="handleClick" :disabled="isDisabled">
         <slot name="processing" v-if="processing"><i class="fa fa-spin fa-cog"/></slot>
-        <slot v-else>{{ value }}</slot>
+        <slot v-else>{{ value ? value : $t('submit') }}</slot>
     </button>
 </template>
 
@@ -22,7 +22,6 @@
             },
             value: {
                 type: String,
-                default: 'Сохранить'
             },
             block: Boolean,
             disabled: Boolean
@@ -54,6 +53,16 @@
             },
             stopProcessing() {
                 this.processing = false;
+            }
+        },
+        i18n: {
+            messages: {
+                en: {
+                    submit: 'Submit',
+                },
+                ru: {
+                    submit: 'Сохранить',
+                },
             }
         }
     }

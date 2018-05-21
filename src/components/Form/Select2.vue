@@ -30,7 +30,6 @@
             },
             defaultItem: {
                 type: Object,
-                default: () => ({id: '', text: 'Не выбрано'}),
             },
             items: {
                 type: Array,
@@ -88,7 +87,10 @@
                 return {
                     delay: this.delay,
                     processResults: response => {
-                        let items = [this.defaultItem];
+                        let items = [this.defaultItem ? this.defaultItem : ({
+                            id: '',
+                            text: this.$t('default_item_text')
+                        })];
 
                         const results = Array.isArray(response) ? response : response.data;
                         results.forEach(el => {
@@ -175,6 +177,16 @@
             $(this.$refs.select)
                 .select2('destroy')
                 .off('select2:select select2:unselect');
+        },
+        i18n: {
+            messages: {
+                en: {
+                    default_item_text: 'Not chosen',
+                },
+                ru: {
+                    default_item_text: 'Не выбрано',
+                },
+            }
         }
     }
 </script>

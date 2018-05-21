@@ -20,7 +20,7 @@
                 <div class="row" v-if="paginationEnabled">
                     <div class="col-sm-6 text-right-xs">
                         <label>
-                            Показать записей:
+                            {{ $t('pagination_per_page') }}:
                             <select class="form-control input-sm" v-model="perPageModel" @change="handlePerPageChanged">
                                 <option v-for="item in perPageOptions" :value="item.value">
                                     {{ item.label }}
@@ -49,7 +49,7 @@
                               :data="data"
                               :fields="fields"
                               :append-params="appendParams"
-                              :no-data-template="noDataTemplate"
+                              :no-data-template="$t('no_data')"
                               :data-path="dataPath"
                               :pagination-path="paginationPath"
                               :http-fetch="httpFetch"
@@ -104,7 +104,6 @@
             },
             noDataTemplate: {
                 type: String,
-                default: 'Нет данных'
             },
             dataPath: {
                 type: String,
@@ -326,7 +325,19 @@
             }).on('hidden.bs.dropdown', function () {
                 $(this).css({'padding-bottom': '', 'overflow': ''});
             });
-        }
+        },
+        i18n: {
+            messages: {
+                en: {
+                    no_data: 'No data available',
+                    pagination_per_page: 'Records per page',
+                },
+                ru: {
+                    no_data: 'Нет данных',
+                    pagination_per_page: 'Показать записей',
+                },
+            },
+        },
     }
 </script>
 

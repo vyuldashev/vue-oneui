@@ -17,7 +17,7 @@
         <template v-if="actions.length > 1">
             <button type="button" class="btn btn-default dropdown-toggle"
                     data-toggle="dropdown" aria-haspopup="true"
-                    v-tooltip="'Выберите действие'"
+                    v-tooltip="$t('dropdown_tooltip')"
                     aria-expanded="false">
                 <span class="caret"/>
             </button>
@@ -64,7 +64,17 @@
 
                 return action.condition();
             }
-        }
+        },
+        i18n: {
+            messages: {
+                en: {
+                    dropdown_tooltip: 'Choose action',
+                },
+                ru: {
+                    dropdown_tooltip: 'Выберите действие',
+                },
+            },
+        },
     }
 </script>
 

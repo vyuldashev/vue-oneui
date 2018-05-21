@@ -1,6 +1,11 @@
 <template>
     <div class="form-group">
-        <input :value="value" class="btn" :class="type" @click="$emit('click')" type="button" :disabled="disabled">
+        <input :value="value ? value : $t('value')"
+               class="btn"
+               :class="type"
+               @click="$emit('click')"
+               type="button"
+               :disabled="disabled">
     </div>
 </template>
 
@@ -9,7 +14,6 @@
         props: {
             value: {
                 type: String,
-                default: 'Сохранить'
             },
             type: {
                 type: String,
@@ -19,6 +23,16 @@
                 type: Boolean,
                 default: false
             }
-        }
+        },
+        i18n: {
+            messages: {
+                en: {
+                    value: 'Submit',
+                },
+                ru: {
+                    value: 'Сохранить',
+                },
+            },
+        },
     }
 </script>

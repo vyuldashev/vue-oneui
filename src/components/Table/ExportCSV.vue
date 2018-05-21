@@ -1,6 +1,6 @@
 <template>
     <li>
-        <button type="button" @click="generate" v-tooltip="'Сохранить как .сsv'">
+        <button type="button" @click="generate" v-tooltip="$t('tooltip')">
             <i class="si si-doc"></i>
         </button>
         <a :href="url" :download="filename" class="hidden" ref="link"></a>
@@ -43,6 +43,16 @@
                     this.$refs.link.click();
                 });
             }
+        },
+        i18n: {
+            messages: {
+                en: {
+                    tooltip: 'Export as csv',
+                },
+                ru: {
+                    tooltip: 'Сохранить как .сsv',
+                },
+            },
         }
     }
 </script>
