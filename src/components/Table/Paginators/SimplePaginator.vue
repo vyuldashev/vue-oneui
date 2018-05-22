@@ -2,12 +2,12 @@
     <div class="pagination" v-if="hasPreviousPage || hasNextPage">
         <ul class="pager">
             <!--Previous Page Link-->
-            <li v-if="hasPreviousPage"><a @click="changePage(currentPage - 1)" rel="prev">« Назад</a></li>
-            <li class="disabled" v-else><span>« Назад</span></li>
+            <li v-if="hasPreviousPage"><a @click="changePage(currentPage - 1)" rel="prev">« {{ $t('previous') }}</a></li>
+            <li class="disabled" v-else><span>« {{ $t('previous') }}</span></li>
 
             <!--Next Page Link-->
-            <li v-if="hasNextPage"><a @click="changePage(currentPage + 1)" rel="next">Вперёд »</a></li>
-            <li class="disabled" v-else><span>Вперёд »</span></li>
+            <li v-if="hasNextPage"><a @click="changePage(currentPage + 1)" rel="next">{{ $t('next') }} »</a></li>
+            <li class="disabled" v-else><span>{{ $t('next') }} »</span></li>
         </ul>
     </div>
 </template>
@@ -53,7 +53,19 @@
             changePage(page) {
                 this.$emit('changePage', page);
             }
-        }
+        },
+        i18n: {
+            messages: {
+                en: {
+                    previous: 'Previous',
+                    next: 'Next',
+                },
+                ru: {
+                    previous: 'Назад',
+                    next: 'Вперед',
+                },
+            }  ,
+        },
     }
 </script>
 
