@@ -9,6 +9,8 @@
                 :disabled="disabled"
         />
 
+        <div class="help-block" v-for="hint in hints">{{ hint }}</div>
+
         <div class="help-block" v-if="hasErrors">{{ error }}</div>
     </div>
 </template>
@@ -35,7 +37,8 @@
             disabled: {
                 type: Boolean,
                 default: false
-            }
+            },
+            hints: Array
         }
     }
 </script>
