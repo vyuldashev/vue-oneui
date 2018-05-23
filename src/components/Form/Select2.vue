@@ -145,7 +145,7 @@
                     return this.value.indexOf(value) !== -1;
                 }
 
-                return this.value === value;
+                return this.value == value;
             },
             resolvedTitle(item) {
                 if (this.display === null) {
