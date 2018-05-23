@@ -7,7 +7,7 @@
         <input type="text" name="yy" style="display:none">
         <input type="password" name="code" style="display:none">
 
-        <div id="cards" class="hidden-xs" v-if="instance">
+        <div id="cards" class="hidden-xs hidden-sm" v-if="instance">
             <div id="front" :style="{ background: instance.backgroundGradient, color: instance.textColor }">
                 <a target="_blank" :href="instance.bankUrl" id="bank-link"
                    :style="{ backgroundImage: 'url('+instance.bankLogo+')' }"></a>
@@ -64,6 +64,56 @@
                        class="field push-10-t"
                        id="code"
                        type="password"
+                       placeholder=""
+                       maxlength="4"
+                       autocomplete="off">
+            </div>
+        </div>
+
+        <div class="visible-xs visible-sm" v-if="instance">
+            <div class="form-group">
+                <label>{{ $t('number') }}</label>
+
+                <input :value="value.number"
+                       @input="numberChanged($event.target.value)"
+                       class="form-control"
+                       id="number"
+                       type="text"
+                       placeholder="0000 0000 0000 0000"
+                       maxlength="22"
+                       autocomplete="off"
+                >
+            </div>
+            <div class="form-group">
+                <label>{{ $t('cardholder') }}</label>
+
+                <input v-model="value.cardHolder"
+                       class="form-control"
+                       id="name"
+                       type="text"
+                       placeholder="CARDHOLDER"
+                       autocomplete="off">
+            </div>
+
+            <oneui-form-select
+                    :label="$t('expiration_month')"
+                    v-model="value.month"
+                    :items="monthOptions"
+                    class="field expired"
+            />
+
+            <oneui-form-select
+                    :label="$t('expiration_year')"
+                    v-model="value.year"
+                    :items="yearOptions"
+                    class="field expired year"
+            />
+
+            <div class="form-group">
+                <label>{{ instance.codeName ? instance.codeName : $t('code') }}</label>
+
+                <input v-model="value.cvv"
+                       class="form-control"
                        placeholder=""
                        maxlength="4"
                        autocomplete="off">
@@ -143,14 +193,22 @@
         i18n: {
             messages: {
                 en: {
+                    number: 'Card number',
                     cardholder: 'Cardholder',
                     cardholder_tooltip: 'Type unembossed if your card is unnamed',
                     expiration: 'Expiration',
+                    expiration_month: 'Expiration (month)',
+                    expiration_year: 'Expiration (year)',
+                    code: 'Code',
                 },
                 ru: {
+                    number: 'Номер карты',
                     cardholder: 'Владелец',
                     cardholder_tooltip: 'Введите unembossed если карта неименная',
                     expiration: 'Срок действия',
+                    expiration_month: 'Срок действия (месяц)',
+                    expiration_year: 'Срок действия (год)',
+                    code: 'Код',
                 },
             }
         },
