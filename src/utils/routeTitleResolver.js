@@ -32,7 +32,7 @@ function makeReplacements(title, params) {
 
 export default function resolveRouteTitle(route) {
     if (route.hasOwnProperty('meta') && route.meta.hasOwnProperty('title')) {
-        const title = typeof route.meta.title === "function" ? route.meta.title(route.params) : route.meta.title;
+        let title = typeof route.meta.title === "function" ? route.meta.title(route.params) : route.meta.title;
 
         return /:\w+/.test(title) ? makeReplacements(title, route.params) : title;
     }
