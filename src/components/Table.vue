@@ -258,7 +258,6 @@
             },
             reload() {
                 this.$nextTick(() => {
-                    this.$refs.vuetable.resetData();
                     this.$refs.vuetable.refresh();
                 });
             },
