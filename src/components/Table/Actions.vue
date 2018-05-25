@@ -13,7 +13,6 @@
                 <template v-else>{{ actions[0].value }}</template>
             </router-link>
         </template>
-
         <template v-if="actions.length > 1">
             <button type="button" class="btn btn-default dropdown-toggle"
                     data-toggle="dropdown" aria-haspopup="true"
@@ -45,12 +44,13 @@
             rowData: {
                 type: Object,
                 required: true,
+            },
+            rowIndex: {
+                type: [String, Number]
             }
         },
-        data() {
-            return {
-                actions: [],
-            }
+        computed: {
+            actions: () => []
         },
         methods: {
             click(action) {
@@ -63,7 +63,7 @@
 
                 return action.condition();
             }
-        },
+        }
     }
 </script>
 
