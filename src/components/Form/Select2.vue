@@ -124,6 +124,9 @@
         watch: {
             value(val) {
                 $(this.$refs.select).val(val).trigger('change.select2');
+            },
+            items(value) {
+                this.initialize();
             }
         },
         methods: {
@@ -157,18 +160,19 @@
                 }
 
                 return item[this.display];
-            }
-        },
-        mounted() {
-            $(this.$refs.select)
-                .select2({
+            },
+            initialize() {
+                return $(this.$refs.select).select2({
                     width: '100%',
                     ajax: this.ajax,
                     tags: this.tags,
-                })
-                .on('select2:select select2:unselect', event => {
-                    this.$emit('input', $(event.target).val() || this.defaultValue);
                 });
+            }
+        },
+        mounted() {
+            this.initialize().on('select2:select select2:unselect', event => {
+                this.$emit('input', $(event.target).val() || this.defaultValue);
+            });
         },
         updated() {
             $(this.$refs.select).val(this.value).trigger('change.select2');
