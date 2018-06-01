@@ -13,7 +13,7 @@
                 <template v-else>{{ actions[0].value }}</template>
             </router-link>
         </template>
-        <template v-if="actions.length > 1">
+        <template v-if="actions.length > 1 && checkConditions">
             <button type="button" class="btn btn-default dropdown-toggle"
                     data-toggle="dropdown" aria-haspopup="true"
                     aria-expanded="false">
@@ -50,7 +50,10 @@
             }
         },
         computed: {
-            actions: () => []
+            actions: () => [],
+            checkConditions() {
+                return this.actions.some(action => this.checkCondition(action));
+            }
         },
         methods: {
             click(action) {
