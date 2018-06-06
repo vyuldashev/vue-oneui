@@ -53,7 +53,9 @@
                               :data-path="dataPath"
                               :pagination-path="paginationPath"
                               :http-fetch="httpFetch"
-                              :per-page="perPageModel"/>
+                              :per-page="perPageModel"
+                              :row-class="rowClass"
+                    />
                 </div>
 
                 <div class="row" v-if="paginationEnabled">
@@ -150,6 +152,10 @@
             filterQueryParameter: {
                 type: String,
                 default: 'filters'
+            },
+            rowClass: {
+                type: [String, Function],
+                default: ''
             }
         },
         data() {
