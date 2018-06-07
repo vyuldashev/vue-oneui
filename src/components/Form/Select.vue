@@ -1,7 +1,7 @@
 <template>
     <div class="form-group" :class="{ 'has-error': hasErrors }">
         <label v-if="label">{{ label }}</label>
-        <select class="form-control" @input="update" :value="value" :disabled="disabled">
+        <select class="form-control" @change="update" :value="value" :disabled="disabled">
             <option></option>
             <option v-for="item in items" :value="item.value" :selected="item.value == value">{{ item.title }}</option>
         </select>
