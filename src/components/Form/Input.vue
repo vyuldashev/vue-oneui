@@ -44,5 +44,7 @@
 </script>
 
 <style scoped>
-
+    input::-ms-clear {
+        display: none;
+    }
 </style>
