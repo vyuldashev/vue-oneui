@@ -10,7 +10,7 @@
             <slot name="filters"/>
         </v-filter>
 
-        <v-block :title="blockTitle" :loading="loading" :allow-fullscreen="true">
+        <v-block :title="blockTitle" :loading="loading" :allow-fullscreen="true" :has-errors="hasErrors">
             <template slot="options" slot-scope="props">
                 <slot name="block-options"/>
                 <export-csv v-if="options.exportCSV" :selector="`#${props.blockId} .table`" :filename="filename"/>
@@ -157,7 +157,8 @@
             rowClass: {
                 type: [String, Function],
                 default: ''
-            }
+            },
+            hasErrors: Boolean,
         },
         data() {
             return {
