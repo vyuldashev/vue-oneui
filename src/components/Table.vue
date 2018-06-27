@@ -43,6 +43,7 @@
                               @vuetable:loading="startedLoading"
                               @vuetable:loaded="stopLoading"
                               @vuetable:pagination-data="onPaginationData"
+                              @vuetable:load-error="handleLoadError"
                               :css="css"
                               :api-mode="apiMode"
                               :api-url="url"
@@ -311,6 +312,9 @@
             handlePerPageChanged() {
                 this.reload();
                 this.$emit('perPageChanged', this.perPageModel);
+            },
+            handleLoadError(response) {
+                this.$emit('loadError', response);
             }
         },
         mounted() {
