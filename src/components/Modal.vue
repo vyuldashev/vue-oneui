@@ -1,7 +1,7 @@
 <template>
     <div :id="id" class="modal fade" role="dialog" data-backdrop="static">
         <div :class="['modal-dialog', dialogSize]" role="document">
-            <div class="modal-content">
+            <div :class="contentClasses">
                 <div class="modal-header" v-if="title">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
@@ -36,7 +36,8 @@
             size: {
                 type: String,
                 default: 'normal'
-            }
+            },
+            loading: Boolean
         },
         watch: {
             show(val) {
@@ -66,6 +67,12 @@
                     default:
                         return null;
                 }
+            },
+            contentClasses() {
+                return {
+                    'modal-content': true,
+                    'modal-loading': this.loading
+                };
             }
         },
         mounted() {
@@ -79,7 +86,7 @@
         },
         beforeDestroy() {
             const elements = document.getElementsByClassName('modal-backdrop');
-            while(elements.length > 0){
+            while (elements.length > 0) {
                 elements[0].parentNode.removeChild(elements[0]);
             }
             document.body.classList.remove('modal-open');
@@ -87,8 +94,42 @@
     }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
     .modal-body {
         white-space: normal;
+        transition: opacity 0.2s ease-out;
+    }
+
+    .modal-content.modal-loading {
+        ::before {
+            position: absolute;
+            display: block;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            z-index: 1;
+            content: " ";
+        }
+        ::after {
+            font-family: 'FontAwesome';
+            content: "\F1CE";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin: -20px 0 0 -20px;
+            width: 40px;
+            height: 40px;
+            line-height: 40px;
+            color: #646464;
+            font-size: 18px;
+            text-align: center;
+            z-index: 2;
+            -webkit-animation: fa-spin 2s infinite linear;
+            animation: fa-spin 2s infinite linear;
+        }
+        .modal-body {
+            opacity: .15;
+        }
     }
 </style>
