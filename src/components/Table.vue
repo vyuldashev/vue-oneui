@@ -159,6 +159,10 @@
                 default: ''
             },
             hasErrors: Boolean,
+            rowCharactersLimit: {
+                type: Number,
+                default: 60,
+            }
         },
         data() {
             return {
@@ -201,9 +205,9 @@
 
                     if (!column.callback) {
                         column.callback = value => {
-                            if (value && value.length > 60) {
+                            if (value && this.rowCharactersLimit > 0 && value.length > this.rowCharactersLimit) {
                                 value = escape(value);
-                                return '<span data-toggle="tooltip" data-placement="top" data-original-title="' + value + '">' + value.substring(0, 60) + '...</span>';
+                                return '<span data-toggle="tooltip" data-placement="top" data-original-title="' + value + '">' + value.substring(0, this.rowCharactersLimit) + '...</span>';
                             }
 
                             return escape(value);
