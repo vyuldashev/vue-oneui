@@ -3,8 +3,8 @@
 </template>
 
 <script>
-    import xmlFormatter from 'xml-formatter';
     import isXml from 'is-xml';
+    import {pd as prettyData} from 'pretty-data';
 
     export default {
         props: {
@@ -17,7 +17,7 @@
                 let result = this.content;
 
                 if (isXml(result)) {
-                    result = xmlFormatter(result);
+                    result = prettyData.xml(result);
                 }
 
                 return result;

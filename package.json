@@ -1,6 +1,6 @@
 {
   "name": "vue-oneui",
-  "version": "1.7.25",
+  "version": "1.7.34",
   "repository": {
     "type": "git",
     "url": "https://github.com/vyuldashev/vue-oneui"
@@ -20,6 +20,7 @@
     "moment": "^2.22.1",
     "moment-timezone": "^0.5.17",
     "noty": "^3.2.0-beta",
+    "pretty-data": "^0.40.0",
     "qs": "^6.5.2",
     "ucfirst": "^1.0.0",
     "v-clipboard": "^1.0.4",
@@ -30,7 +31,6 @@
     "vue-morphling": "^0.7.4",
     "vue-multiselect": "^2.1.0",
     "vuetable-2": "^1.7.2",
-    "vuex": "^3.0.1",
-    "xml-formatter": "^1.0.1"
+    "vuex": "^3.0.1"
   }
 }
