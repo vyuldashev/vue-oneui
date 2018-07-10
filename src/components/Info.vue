@@ -1,7 +1,7 @@
 <template functional>
     <div class="row items-push">
         <div class="col-xs-12">
-            <table class="table table-info table-striped table-borderless remove-margin-b">
+            <table :class="tableClass">
                 <thead>
                 <slot name="headers"/>
                 </thead>
@@ -14,7 +14,14 @@
 </template>
 
 <script>
-    export default {}
+    export default {
+        props: {
+            tableClass: {
+                type: String,
+                default: `table table-info table-striped table-borderless remove-margin-b`,
+            },
+        },
+    }
 </script>
 
 <style>
