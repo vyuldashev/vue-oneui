@@ -1,7 +1,7 @@
 <template functional>
     <div class="row items-push">
         <div class="col-xs-12">
-            <table :class="tableClass">
+            <table :class="props.tableClass">
                 <thead>
                 <slot name="headers"/>
                 </thead>
