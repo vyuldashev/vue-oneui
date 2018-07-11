@@ -1,9 +1,10 @@
 <template>
-    <div class="form-group">
+    <div class="form-group" :class="{'has-error': hasError}">
         <label class="css-input switch switch-sm switch-primary">
             <input type="checkbox" @change="update($event.target.checked)" :checked="value">
             <span></span> {{ label }}
         </label>
+        <span class="help-block" v-if="hasError">{{ error }}</span>
     </div>
 </template>
 
@@ -15,6 +16,8 @@
                 type: Boolean,
                 default: false
             },
+            hasError: Boolean,
+            error: String
         },
         methods: {
             update(value) {
