@@ -169,6 +169,11 @@
                 loading: false,
                 css: {
                     tableClass: 'table table-striped table-borderless table-vcenter',
+                    ascendingIcon: 'fa fa-fw fa-sort-asc',
+                    descendingIcon: 'fa fa-fw fa-sort-desc',
+                    ascendingClass: 'sorted-asc',
+                    descendingClass: 'sorted-desc',
+                    sortableIcon: '',
                 },
                 pagination: {},
                 perPageModel: this.perPage,
