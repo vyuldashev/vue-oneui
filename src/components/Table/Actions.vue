@@ -1,6 +1,12 @@
 <template>
     <div class="btn-group btn-group-xs">
         <template v-if="actions.length === 1 && checkCondition(actions[0])">
+            <a :href="actions[0].download" class="btn btn-default" v-tooltip="actions[0].tooltip"
+               v-if="actions[0].hasOwnProperty('download')" download>
+                <i :class="actions[0].icon" v-if="actions[0].icon"/>
+                <template v-else>{{ actions[0].value }}</template>
+            </a>
+
             <a @click="click(actions[0])" class="btn btn-default" v-tooltip="actions[0].tooltip"
                v-if="actions[0].method">
                 <i :class="actions[0].icon" v-if="actions[0].icon"/>
@@ -22,6 +28,11 @@
             <ul class="dropdown-menu pull-right">
                 <li v-for="action in actions">
                     <template v-if="checkCondition(action)">
+                        <a :href="action.download" v-tooltip="action.tooltip"
+                           v-if="action.hasOwnProperty('download')" download>
+                            {{ action.value }}
+                        </a>
+
                         <a href="#" @click.prevent="click(action)" v-tooltip="action.tooltip" v-if="action.method">
                             {{ action.value }}
                         </a>
