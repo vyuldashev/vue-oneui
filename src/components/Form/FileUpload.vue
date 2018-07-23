@@ -3,11 +3,12 @@
         <el-upload
                 ref="upload"
                 action="https://jsonplaceholder.typicode.com/posts/"
+                :accept="accept"
                 :file-list="fileList"
                 :auto-upload="false"
                 :multiple="false"
                 :on-change="onChange">
-            <el-button slot="trigger" size="small" type="primary">Выберите файл</el-button>
+            <el-button slot="trigger" size="small" type="primary">{{ label }}</el-button>
         </el-upload>
 
         <div class="help-block" v-if="hasErrors">{{ error }}</div>
@@ -28,7 +29,7 @@
             },
             label: {
                 type: String,
-                default: null
+                default: 'Выберите файл',
             },
             value: {
                 default: null
