@@ -3,6 +3,7 @@
         <el-upload
                 ref="upload"
                 action="https://jsonplaceholder.typicode.com/posts/"
+                :name="name"
                 :accept="accept"
                 :file-list="fileList"
                 :auto-upload="false"
