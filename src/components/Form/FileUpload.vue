@@ -1,19 +1,18 @@
 <template>
-    <div class="wrapper">
-        <form enctype="multipart/form-data" novalidate>
-            <div class="form-group" :class="{ 'has-error': hasErrors }">
-                <label v-if="label">{{ label }}</label>
+    <div class="form-group" :class="{'has-error': hasErrors}">
+        <el-upload
+                ref="upload"
+                action="https://jsonplaceholder.typicode.com/posts/"
+                :file-list="fileList"
+                :auto-upload="false"
+                :multiple="false"
+                :on-change="onChange">
+            <el-button slot="trigger" size="small" type="primary">Выберите файл</el-button>
+        </el-upload>
 
-                <input type="file"
-                       ref="file-input"
-                       :name="name"
-                       :accept="accept"
-                       @change="filesChange($event.target.name, $event.target.files)"
-                />
-                <div class="help-block" v-if="hasErrors">{{ error }}</div>
-            </div>
-        </form>
+        <div class="help-block" v-if="hasErrors">{{ error }}</div>
     </div>
+
 </template>
 
 <script>
@@ -37,25 +36,30 @@
             hasErrors: Boolean,
             error: String
         },
+        data() {
+            return {
+                fileList: [],
+            }
+        },
         watch: {
             value(val) {
                 if (val === '') {
-                    this.$refs['file-input'].value = '';
+                    this.fileList = [];
                 }
-            }
+            },
         },
         methods: {
-            filesChange(fieldName, fileList) {
-                if (!fileList.length) {
-                    return;
-                }
+            onChange(files, fileList) {
+                this.fileList = fileList.slice(-1);
 
-                this.$emit('input', fileList[0]);
-            }
+                this.$emit('input', this.fileList[0].raw);
+            },
         }
     }
 </script>
 
-<style scoped>
-
+<style>
+    .el-upload__input {
+        display: none !important;
+    }
 </style>

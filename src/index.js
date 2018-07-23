@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import VueI18n from 'vue-i18n';
+import ElementUI from 'element-ui';
 import Sidebar from './components/Sidebar';
 import Block from './components/Block';
 import Info from './components/Info';
@@ -41,6 +42,7 @@ import VTooltip from 'v-tooltip';
 import VueMorphling from 'vue-morphling';
 import VueHighlightJS from 'vue-highlightjs'
 
+Vue.use(ElementUI);
 Vue.use(Clipboard);
 Vue.use(VTooltip);
 Vue.use(VueMorphling);
