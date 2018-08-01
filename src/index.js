@@ -19,6 +19,7 @@ import FormRadio from './components/Form/Radio';
 import FormInput from './components/Form/Input';
 import FormInputStatic from './components/Form/InputStatic';
 import FormTextarea from './components/Form/Textarea';
+import FormTextEditor from './components/Form/TextEditor';
 import FormSelect from './components/Form/Select';
 import FormSelect2 from './components/Form/Select2';
 import FormSwitchButton from './components/Form/SwitchButton';
@@ -68,6 +69,7 @@ const components = {
     FormInput,
     FormInputStatic,
     FormTextarea,
+    FormTextEditor,
     FormSelect,
     FormSelect2,
     FormSwitchButton,
