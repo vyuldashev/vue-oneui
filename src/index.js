@@ -26,6 +26,7 @@ import FormSwitchButton from './components/Form/SwitchButton';
 import FormDateInput from './components/Form/DateInput';
 import FormDateTimeInput from './components/Form/DateTimeInput';
 import FormFileUpload from './components/Form/FileUpload';
+import FormGroup from './components/Form/Group';
 import FormMultiSelect from 'vue-multiselect'; // TODO обернуть в компонент кастомный
 import TableFilter from './components/Table/Filter';
 import TablePagination from './components/Table/Paginators/Factory';
@@ -77,6 +78,7 @@ const components = {
     FormDateTimeInput,
     FormMultiSelect,
     FormFileUpload,
+    FormGroup,
 
     TableFilter,
     TablePagination,
