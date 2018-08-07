@@ -75,7 +75,8 @@
             tags: {
                 type: Boolean,
                 default: false
-            }
+            },
+            placeholder: String
         },
         computed: {
             inputId() {
@@ -166,6 +167,7 @@
                     width: '100%',
                     ajax: this.ajax,
                     tags: this.tags,
+                    placeholder: this.placeholder
                 });
             }
         },
