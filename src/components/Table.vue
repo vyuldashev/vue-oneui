@@ -6,7 +6,7 @@
                 @onFilter="onFilter"
                 @onFilterReset="onFilterReset"
                 :disabled="searchDisabled"
-                v-if="filtersResolved && Object.keys(filters).length > 0">
+                v-if="$slots.filters && filtersResolved && Object.keys(filters).length > 0">
             <slot name="filters"/>
         </v-filter>
 
