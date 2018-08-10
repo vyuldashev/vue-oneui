@@ -23,7 +23,7 @@
                 }
 
                 return 'item';
-            }
+            },
         }
     }
 </script>
