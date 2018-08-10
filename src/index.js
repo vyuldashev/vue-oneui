@@ -42,7 +42,7 @@ import IconSize from './components/Icons/Size';
 import Clipboard from 'v-clipboard';
 import VTooltip from 'v-tooltip';
 import VueMorphling from 'vue-morphling';
-import VueHighlightJS from 'vue-highlightjs'
+import VueHighlightJS from './plugins/vue-highlightjs';
 
 Vue.use(ElementUI);
 Vue.use(Clipboard);
