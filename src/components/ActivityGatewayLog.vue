@@ -1,5 +1,5 @@
 <template>
-    <oneui-block title="Логи" :loading="loading">
+    <oneui-block :title="$t('block_title')" :loading="loading">
         <activity-log slot="content"
                       :loading="loading"
                       :items="items"
@@ -44,12 +44,14 @@
         i18n: {
             messages: {
                 en: {
+                    block_title: 'Logs',
                     request: 'Request',
                     response: 'Response',
                     response_code: 'Response code',
                     comments: 'Comments',
                 },
                 ru: {
+                    block_title: 'Логи',
                     request: 'Запрос',
                     response: 'Ответ',
                     response_code: 'Код ответа',
