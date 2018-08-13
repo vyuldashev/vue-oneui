@@ -1,5 +1,5 @@
 <template>
-    <div :id="id" class="block block-rounded block-opt-refresh-icon6" :class="{'block-themed': hasErrors}">
+    <div :id="id" :class="blockClasses">
         <div class="block-header" :class="background">
             <ul class="block-options">
                 <slot name="options" v-bind="initial"/>
@@ -37,15 +37,31 @@
                 default: false
             },
             hasErrors: Boolean,
+            rounded: {
+                type: Boolean,
+                default: true
+            },
+            transparent: Boolean,
         },
-        data() {
-            return {
-                toggled: false,
-            }
-        },
+        data: () => ({
+            fullscreen: false,
+            toggled: false,
+        }),
         computed: {
             id() {
                 return 'block-' + this._uid;
+            },
+            blockClasses() {
+                return {
+                    block: true,
+                    'block-opt-refresh-icon6': true,
+                    'block-opt-refresh': this.loading,
+                    'block-transparent': this.transparent,
+                    'block-rounded': this.rounded,
+                    'block-opt-hidden': this.toggled,
+                    'block-opt-fullscreen': this.fullscreen,
+                    'block-themed': this.hasErrors,
+                };
             },
             initial() {
                 return {
@@ -57,26 +73,12 @@
             },
         },
         methods: {
-            stateLoading() {
-                App.blocks('#' + this.id, 'state_loading');
-            },
-            stateNormal() {
-                App.blocks('#' + this.id, 'state_normal');
-            },
             toggle() {
                 this.toggled = !this.toggled;
-
-                App.blocks('#' + this.id, 'content_toggle');
             },
             toggleFullscreen() {
-                App.blocks('#' + this.id, 'fullscreen_toggle');
+                this.fullscreen = !this.fullscreen;
             }
-        },
-        mounted() {
-            if (this.loading) this.stateLoading();
-        },
-        updated() {
-            this.loading ? this.stateLoading() : this.stateNormal();
         }
     }
 </script>
