@@ -2,7 +2,7 @@
     <div>
         <v-filter
                 :form="filters"
-                :loading="loading"
+                :loading="isLoading"
                 @onFilter="onFilter"
                 @onFilterReset="onFilterReset"
                 :disabled="searchDisabled"
@@ -10,7 +10,7 @@
             <slot name="filters"/>
         </v-filter>
 
-        <v-block :title="blockTitle" :loading="loading" :allow-fullscreen="true" :has-errors="hasErrors">
+        <v-block :title="blockTitle" :loading="isLoading" :allow-fullscreen="true" :has-errors="hasErrors">
             <template slot="options" slot-scope="props">
                 <slot name="block-options"/>
                 <export-csv v-if="options.exportCSV" :selector="`#${props.blockId} .table`" :filename="filename"/>
@@ -162,11 +162,17 @@
             rowCharactersLimit: {
                 type: Number,
                 default: 60,
+            },
+            loading: {
+                type: Boolean,
+                default: false,
             }
         },
         data() {
             return {
-                loading: false,
+                state: {
+                    loading: false,
+                },
                 css: {
                     tableClass: 'table table-striped table-borderless table-vcenter',
                     ascendingIcon: 'fa fa-fw fa-sort-asc',
@@ -242,6 +248,9 @@
 
                 return `${title !== null ? title : 'Отчет'} ${moment().format('YYYY-MM-DD')}.csv`;
             },
+            isLoading() {
+                return this.state.loading || this.loading;
+            }
         },
         beforeMount() {
             Object.assign(this.originalFilters, this.filters);
@@ -252,10 +261,10 @@
                 return this.$http.get(apiUrl, httpOptions);
             },
             startedLoading() {
-                this.loading = true;
+                this.state.loading = true;
             },
             stopLoading() {
-                this.loading = false;
+                this.state.loading = false;
                 this.$nextTick(() => {
                     $('[data-toggle="popover"]').popover({trigger: 'hover'});
                     $('[data-toggle="tooltip"]').tooltip()
