@@ -2,7 +2,7 @@ import moment from 'moment-timezone';
 import {settings} from '../../index';
 
 export default (value, time = false, fromTz = 'UTC') => {
-    if (value === null || value.length === 0) {
+    if (!value) {
         return '';
     }
 
