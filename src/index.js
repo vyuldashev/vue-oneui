@@ -3,6 +3,7 @@ import VueI18n from 'vue-i18n';
 import ElementUI from 'element-ui';
 import Sidebar from './components/Sidebar';
 import Block from './components/Block';
+import BlockActions from './components/Block/Actions';
 import Info from './components/Info';
 import Modal from './components/Modal';
 import Alert from './components/Alert';
@@ -54,6 +55,7 @@ Vue.use(VueI18n);
 const components = {
     Sidebar,
     Block,
+    BlockActions,
     Info,
     Modal,
     Alert,
