@@ -101,7 +101,7 @@
     }
 
     .modal-content.modal-loading {
-        ::before {
+        &::before {
             position: absolute;
             display: block;
             top: 0;
@@ -111,7 +111,7 @@
             z-index: 1;
             content: " ";
         }
-        ::after {
+        &::after {
             font-family: 'FontAwesome';
             content: "\F1CE";
             position: absolute;
@@ -128,7 +128,7 @@
             -webkit-animation: fa-spin 2s infinite linear;
             animation: fa-spin 2s infinite linear;
         }
-        .modal-body {
+        > .modal-body {
             opacity: .15;
         }
     }
