@@ -1,6 +1,5 @@
 import Vue from 'vue';
 import VueI18n from 'vue-i18n';
-import ElementUI from 'element-ui';
 import Sidebar from './components/Sidebar';
 import Block from './components/Block';
 import BlockActions from './components/Block/Actions';
@@ -26,7 +25,6 @@ import FormSelect2 from './components/Form/Select2';
 import FormSwitchButton from './components/Form/SwitchButton';
 import FormDateInput from './components/Form/DateInput';
 import FormDateTimeInput from './components/Form/DateTimeInput';
-import FormFileUpload from './components/Form/FileUpload';
 import FormGroup from './components/Form/Group';
 import FormMultiSelect from 'vue-multiselect'; // TODO обернуть в компонент кастомный
 import TableFilter from './components/Table/Filter';
@@ -45,7 +43,6 @@ import VTooltip from 'v-tooltip';
 import VueMorphling from 'vue-morphling';
 import VueHighlightJS from './plugins/vue-highlightjs';
 
-Vue.use(ElementUI);
 Vue.use(Clipboard);
 Vue.use(VTooltip);
 Vue.use(VueMorphling);
@@ -79,7 +76,6 @@ const components = {
     FormDateInput,
     FormDateTimeInput,
     FormMultiSelect,
-    FormFileUpload,
     FormGroup,
 
     TableFilter,
