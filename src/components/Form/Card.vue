@@ -124,7 +124,6 @@
 
 <script>
     import CardInfo from 'card-info';
-    import range from 'lodash/range';
 
     export default {
         props: {
@@ -159,22 +158,18 @@
                 return result.replace(/(.{4})/g, '$1 ');
             },
             monthOptions() {
-                return Object.values(range(1, 12)).map(item => {
-                    return {
-                        value: item,
-                        title: item,
-                    };
-                });
+                return Array.from({length: 12}).map((_, i) => ({
+                    value: i + 1,
+                    title: i + 1
+                }));
             },
             yearOptions() {
-                const max = moment().year() + 19;
+                const year = moment().year();
 
-                return Object.values(range(moment().year(), max)).map(item => {
-                    return {
-                        value: item,
-                        title: item,
-                    }
-                });
+                return Array.from({length: 19}).map((_, i) => ({
+                    value: year + i,
+                    title: year + i,
+                }));
             },
         },
         mounted() {
