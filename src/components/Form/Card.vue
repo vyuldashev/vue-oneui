@@ -31,7 +31,6 @@
                             <input v-model="value.cardHolder"
                                    v-tooltip.bottom="$t('cardholder_tooltip')"
                                    class="field"
-                                   id="name"
                                    type="text"
                                    placeholder="CARDHOLDER"
                                    autocomplete="off">
@@ -89,7 +88,6 @@
 
                 <input v-model="value.cardHolder"
                        class="form-control"
-                       id="name"
                        type="text"
                        placeholder="CARDHOLDER"
                        autocomplete="off">
