@@ -317,14 +317,10 @@
             onFilter(val) {
                 this.filtersModel = val;
 
-                this.reload();
-
                 this.$emit('filter', this.filtersModel);
             },
             onFilterReset() {
                 this.resolveFilters();
-
-                this.reload();
 
                 this.$emit('filterReset');
             },
