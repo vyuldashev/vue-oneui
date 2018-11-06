@@ -8,5 +8,5 @@ This repository does not contain OneUI template. Purchase it at https://pixelcav
 ## Installation
 
 ```bash
-npm install vue-oneui --save-dev
+npm install vue-oneui
 ```
