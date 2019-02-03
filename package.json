@@ -1,6 +1,6 @@
 {
   "name": "vue-oneui",
-  "version": "1.7.62",
+  "version": "2.0.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/vyuldashev/vue-oneui"
@@ -9,9 +9,6 @@
   "dependencies": {
     "accounting": "^0.4.1",
     "axios": "^0.18.0",
-    "babel-plugin-transform-runtime": "^6.23.0",
-    "babel-preset-es2015": "^6.24.1",
-    "babel-preset-stage-2": "^6.24.1",
     "card-info": "^1.2.4",
     "form-backend-validation": "^2.3.3",
     "highlight.js": "^9.12.0",
@@ -24,11 +21,11 @@
     "pretty-data": "^0.40.0",
     "qs": "^6.5.2",
     "ucfirst": "^1.0.0",
-    "v-clipboard": "^1.0.4",
+    "v-clipboard": "^2.2.1",
     "v-tooltip": "^2.0.0-rc.33",
     "vue": "^2.5.16",
-    "vue-i18n": "^7.8.1",
-    "vue-morphling": "^0.7.4",
+    "vue-i18n": "^8.8.0",
+    "vue-morphling": "^0.8.5",
     "vue-multiselect": "^2.1.0",
     "vuetable-2": "^1.7.2",
     "vuex": "^3.0.1"

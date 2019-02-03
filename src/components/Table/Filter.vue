@@ -2,17 +2,16 @@
     <div>
         <v-block :title="blockTitle" @keyup.enter.native="submit">
             <template slot="options">
-                <li v-if="settings.showSearchHelper">
-                    <button type="button" ref="hint" @click="openSearchHelper">
-                        <i class="si si-question"></i>
-                    </button>
-                </li>
+                <button class="btn-block-option" type="button" ref="hint" @click="openSearchHelper"
+                        v-if="settings.showSearchHelper">
+                    <i class="si si-question"></i>
+                </button>
             </template>
             <template slot="content">
                 <slot/>
             </template>
             <div slot="footer" class="text-right">
-                <button class="btn btn-default" @click="submit" :disabled="loading || disabled">
+                <button class="btn btn-primary" @click="submit" :disabled="loading || disabled">
                         <span v-if="!loading">
                             <i class="si si-magnifier"/>
                             {{ $t('search') }}
@@ -20,7 +19,7 @@
                     <span v-else><i class="fa fa-cog fa-spin"/></span>
                 </button>
 
-                <button class="btn btn-default" @click="reset" v-if="!loading" v-tooltip="$t('reset')">
+                <button class="btn btn-light" @click="reset" v-if="!loading" v-tooltip="$t('reset')">
                     <span><i class="si si-reload"/></span>
                 </button>
             </div>
@@ -125,8 +124,7 @@
                 forEach(this.form, (value, key) => {
                     if (this.initialForm.hasOwnProperty(key)) {
                         this.form[key] = this.initialForm[key];
-                    }
-                    else {
+                    } else {
                         this.form[key] = '';
                     }
                 });

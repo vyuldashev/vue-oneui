@@ -1,10 +1,10 @@
 <template>
-    <li>
-        <button type="button" @click="generate" v-tooltip="$t('tooltip')">
+    <span>
+        <button class="btn-block-option" type="button" @click="generate" v-tooltip="$t('tooltip')">
             <i class="si si-doc"></i>
         </button>
         <a :href="url" :download="filename" class="hidden" ref="link"></a>
-    </li>
+    </span>
 </template>
 <script>
     export default {

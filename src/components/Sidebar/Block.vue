@@ -1,6 +1,6 @@
 <template>
     <div>
-        <li class="nav-main-heading"><span class="sidebar-mini-hide">{{ title }}</span></li>
+        <li class="nav-main-heading">{{ title }}</li>
         <factory v-for="(child, index) in item.items" :item="child" :key="index"></factory>
     </div>
 </template>

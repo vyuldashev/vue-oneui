@@ -1,12 +1,12 @@
 <template>
-    <li :class="{ 'open': isOpen }">
-        <a href="#" class="nav-submenu" @click.prevent="toggle">
-            <i :class="item.icon"></i><span class="sidebar-mini-hide">{{ resolveTitle(item.title) }}</span>
+    <li class="nav-main-item" :class="{ 'open': isOpen }">
+        <a href="#" class="nav-main-link nav-main-link-submenu" @click.prevent="toggle">
+            <i class="nav-main-link-icon" :class="item.icon"></i><span class="sidebar-mini-hide">{{ resolveTitle(item.title) }}</span>
         </a>
 
-        <ul>
-            <li v-for="child in item.children">
-                <router-link :to="child.route" active-class="active">{{ resolveTitle(child.title) }}</router-link>
+        <ul class="nav-main-submenu">
+            <li class="nav-main-item" v-for="child in item.children">
+                <router-link class="nav-main-link" :to="child.route" active-class="active">{{ resolveTitle(child.title) }}</router-link>
             </li>
         </ul>
     </li>

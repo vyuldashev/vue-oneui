@@ -1,7 +1,9 @@
 <template>
-    <li>
-        <router-link :to="item.route" active-class="active" exact>
-            <i :class="item.icon"></i><span class="sidebar-mini-hide">{{ title }}</span>
+    <li class="nav-main-item">
+        <router-link :to="item.route" class="nav-main-link" active-class="active" exact>
+            <i class="nav-main-link-icon" :class="item.icon"></i>
+
+            <span class="nav-main-link-name">{{ title }}</span>
         </router-link>
     </li>
 </template>

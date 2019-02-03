@@ -1,19 +1,19 @@
 <template>
     <div :id="id" :class="blockClasses">
         <div class="block-header" :class="background">
-            <ul class="block-options">
+            <h3 class="block-title">{{ title }}</h3>
+
+            <div class="block-options">
                 <slot name="options" v-bind="initial"/>
 
-                <li v-if="allowFullscreen">
-                    <button type="button" @click="toggleFullscreen"><i class="si si-size-fullscreen"/></button>
-                </li>
-                <li>
-                    <button type="button" @click="toggle">
-                        <i class="si" :class="{ 'si-arrow-up': !toggled, 'si si-arrow-down': toggled }"/>
-                    </button>
-                </li>
-            </ul>
-            <h3 class="block-title">{{ title }}</h3>
+                <template v-if="allowFullscreen">
+                    <button class="btn-block-option" type="button" @click="toggleFullscreen"><i class="si si-size-fullscreen"/></button>
+                </template>
+
+                <button class="btn-block-option" type="button" @click="toggle">
+                    <i class="si" :class="{ 'si-arrow-up': !toggled, 'si si-arrow-down': toggled }"/>
+                </button>
+            </div>
         </div>
         <div class="block-content block-content-full">
             <slot name="content"/>
@@ -58,8 +58,8 @@
                     'block-opt-refresh': this.loading,
                     'block-transparent': this.transparent,
                     'block-rounded': this.rounded,
-                    'block-opt-hidden': this.toggled,
-                    'block-opt-fullscreen': this.fullscreen,
+                    'block-mode-hidden': this.toggled,
+                    'block-mode-fullscreen': this.fullscreen,
                     'block-themed': this.hasErrors,
                 };
             },
