@@ -55,7 +55,7 @@
                 return {
                     block: true,
                     'block-opt-refresh-icon6': true,
-                    'block-opt-refresh': this.loading,
+                    'block-mode-loading': this.loading,
                     'block-transparent': this.transparent,
                     'block-rounded': this.rounded,
                     'block-mode-hidden': this.toggled,

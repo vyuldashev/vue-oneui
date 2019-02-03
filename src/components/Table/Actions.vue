@@ -1,5 +1,5 @@
 <template>
-    <div class="btn-group btn-group-xs">
+    <div class="btn-group btn-group-sm">
         <template v-if="actions.length === 1 && checkCondition(actions[0])">
             <a :href="actions[0].download" class="btn btn-default" v-tooltip="actions[0].tooltip"
                v-if="actions[0].hasOwnProperty('download')" download>
@@ -25,24 +25,24 @@
                     aria-expanded="false">
                 <span class="caret"/>
             </button>
-            <ul class="dropdown-menu pull-right">
-                <li v-for="action in actions">
+            <div class="dropdown-menu pull-right">
+                <template v-for="action in actions">
                     <template v-if="checkCondition(action)">
-                        <a :href="action.download" v-tooltip="action.tooltip"
+                        <a class="dropdown-item" :href="action.download" v-tooltip="action.tooltip"
                            v-if="action.hasOwnProperty('download')" download>
                             {{ action.value }}
                         </a>
 
-                        <a href="#" @click.prevent="click(action)" v-tooltip="action.tooltip" v-if="action.method">
+                        <a class="dropdown-item" href="#" @click.prevent="click(action)" v-tooltip="action.tooltip" v-if="action.method">
                             {{ action.value }}
                         </a>
 
-                        <router-link :to="action.routerLink" v-if="action.routerLink" v-tooltip="action.tooltip">
+                        <router-link class="dropdown-item" :to="action.routerLink" v-if="action.routerLink" v-tooltip="action.tooltip">
                             {{ action.value }}
                         </router-link>
                     </template>
-                </li>
-            </ul>
+                </template>
+            </div>
         </template>
     </div>
 </template>
