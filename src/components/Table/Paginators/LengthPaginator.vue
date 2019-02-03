@@ -1,16 +1,21 @@
 <template>
-    <ul class="pagination pagination-sm" v-if="items.length > 1">
-        <li v-if="hasPreviousPage"><a @click="changePage(currentPage - 1)" rel="prev">«</a></li>
-        <li class="disabled" v-else><span>«</span></li>
+    <nav>
+        <ul class="pagination pagination-sm justify-content-end" v-if="items.length > 1">
+            <li class="page-item" :disabled="!hasPreviousPage">
+                <a class="page-link" @click="changePage(currentPage - 1)" rel="prev">«</a>
+            </li>
 
-        <li v-for="item in items" :class="{'disabled': item === '...', 'active': item === currentPage }">
-            <a v-if="item !== '...'" @click="changePage(item)">{{ item }}</a>
-            <span v-else>{{ item }}</span>
-        </li>
+            <li class="page-item" v-for="item in items"
+                :class="{'disabled': item === '...', 'active': item === currentPage }">
+                <a class="page-link" v-if="item !== '...'" @click="changePage(item)">{{ item }}</a>
+                <span v-else>{{ item }}</span>
+            </li>
 
-        <li v-if="hasNextPage"><a @click="changePage(currentPage + 1)" rel="next">»</a></li>
-        <li class="disabled" v-else><span>»</span></li>
-    </ul>
+            <li class="page-item" :disabled="!hasNextPage">
+                <a class="page-link" @click="changePage(currentPage + 1)" rel="next">»</a>
+            </li>
+        </ul>
+    </nav>
 </template>
 
 <script>
@@ -76,16 +81,18 @@
         methods: {
             changePage(page) {
                 this.$emit('changePage', page);
-            }
-        }
+            },
+        },
     }
 </script>
 
 <style lang="scss" scoped>
     .pagination {
         margin: 0;
+
         li {
             cursor: pointer;
+
             &.disabled {
                 cursor: not-allowed;
             }

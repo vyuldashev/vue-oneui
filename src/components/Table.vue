@@ -17,8 +17,8 @@
             </template>
 
             <template slot="content">
-                <div class="row" v-if="paginationEnabled">
-                    <div class="col-sm-6 text-right-xs">
+                <div class="row justify-content-between" v-if="paginationEnabled">
+                    <div class="col-6 text-right-xs">
                         <label>
                             {{ $t('pagination_per_page') }}:
                             <select class="form-control input-sm" v-model="perPageModel" @change="handlePerPageChanged">
@@ -28,13 +28,11 @@
                             </select>
                         </label>
                     </div>
-                    <div class="col-sm-6">
-                        <div class="text-right">
-                            <pagination :data="pagination"
-                                        @changePage="changePage"
-                                        @initialized="paginationInitialized"
-                            />
-                        </div>
+                    <div class="col-6">
+                        <pagination :data="pagination"
+                                    @changePage="changePage"
+                                    @initialized="paginationInitialized"
+                        />
                     </div>
                 </div>
 
@@ -60,7 +58,7 @@
                 </div>
 
                 <div class="row" v-if="paginationEnabled">
-                    <div class="col-sm-6 col-sm-push-6">
+                    <div class="col">
                         <div class="text-right">
                             <pagination :data="pagination"
                                         @changePage="changePage"
