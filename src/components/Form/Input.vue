@@ -2,7 +2,7 @@
     <div class="form-group">
         <label v-if="label">{{ label }}</label>
         <input
-                class="form-control form-control-alt"
+                class="form-control"
                 :type="type"
                 :value="value"
                 @input="$emit('input', $event.target.value)"
