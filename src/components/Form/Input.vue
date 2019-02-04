@@ -1,17 +1,18 @@
 <template>
-    <div class="form-group" :class="{ 'has-error': hasErrors }">
+    <div class="form-group">
         <label v-if="label">{{ label }}</label>
         <input
-                class="form-control"
+                class="form-control form-control-alt"
                 :type="type"
                 :value="value"
                 @input="$emit('input', $event.target.value)"
                 :disabled="disabled"
+                :class="{ 'is-invalid': hasErrors }"
         />
 
         <div class="help-block" v-for="hint in hints">{{ hint }}</div>
 
-        <div class="help-block" v-if="hasErrors">{{ error }}</div>
+        <div class="invalid-feedback animated fadeIn" v-if="hasErrors">{{ error }}</div>
     </div>
 </template>
 
