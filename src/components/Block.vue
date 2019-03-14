@@ -78,6 +78,7 @@
             },
             toggleFullscreen() {
                 this.fullscreen = !this.fullscreen;
+                this.$emit('fullscreen', this.fullscreen);
             }
         }
     }
