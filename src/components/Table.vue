@@ -327,7 +327,8 @@
             },
             onFilterReset() {
                 this.resolveFilters();
-
+                this.errors.clear(null);
+                
                 this.reload();
 
                 this.$emit('filterReset');
