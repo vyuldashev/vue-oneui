@@ -1,10 +1,12 @@
 <template>
-    <li class="dropdown" v-if="hasAnyVisibleItem">
-        <button type="button" data-toggle="dropdown"><i class="si si-settings"/></button>
-        <ul class="dropdown-menu dropdown-menu-right">
+    <div class="dropdown" v-if="hasAnyVisibleItem">
+        <button type="button" data-toggle="dropdown" class="btn btn-sm btn-light dropdown-toggle">
+            <i class="si si-settings"/>
+        </button>
+        <div class="dropdown-menu dropdown-menu-right">
             <action-item v-for="(item, index) in items" v-bind="item" :key="index"/>
-        </ul>
-    </li>
+        </div>
+    </div>
 </template>
 
 <script>
@@ -34,5 +36,7 @@
 </script>
 
 <style scoped>
-
+    .dropdown-toggle:after {
+        content: none;
+    }
 </style>

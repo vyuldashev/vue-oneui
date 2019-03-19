@@ -1,14 +1,16 @@
 <template functional>
-    <div class="row items-push">
-        <div class="col-xs-12">
-            <table :class="props.tableClass">
-                <thead>
-                <slot name="headers"/>
-                </thead>
-                <tbody>
-                <slot/>
-                </tbody>
-            </table>
+    <div>
+        <div class="row no-gutters">
+            <div class="col">
+                <table :class="props.tableClass">
+                    <thead>
+                    <slot name="headers"/>
+                    </thead>
+                    <tbody>
+                    <slot/>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </template>
@@ -18,19 +20,19 @@
         props: {
             tableClass: {
                 type: String,
-                default: `table table-info table-striped table-borderless remove-margin-b`,
+                default: `table table-custom-info table-striped table-borderless remove-margin-b`,
             },
         },
     }
 </script>
 
 <style>
-    .table-info tr td:first-of-type {
+    .table-custom-info tr td:first-of-type {
         width: 20% !important;
         font-weight: bold;
     }
 
-    .table-info tr td {
+    .table-custom-info tr td {
         word-break: break-word;
     }
 </style>

@@ -1,8 +1,8 @@
 <template>
-    <li v-if="value(visible)">
-        <router-link v-if="route" :to="value(route)">{{ value(text) }}</router-link>
-        <a v-else href="#" @click.prevent="handleClick()">{{ value(text) }}</a>
-    </li>
+    <span v-if="value(visible)">
+        <router-link v-if="route" :to="value(route)" class="dropdown-item">{{ value(text) }}</router-link>
+        <a v-else href="#" @click.prevent="handleClick()" class="dropdown-item">{{ value(text) }}</a>
+    </span>
 </template>
 
 <script>
