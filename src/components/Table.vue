@@ -6,8 +6,8 @@
                 @onFilter="onFilter"
                 @onFilterReset="onFilterReset"
                 :disabled="searchDisabled"
-                v-if="$slots.filters && filtersResolved && Object.keys(filters).length > 0">
-            <slot name="filters"/>
+                v-if="$scopedSlots.filters && filtersResolved && Object.keys(filters).length > 0">
+            <slot name="filters" :errors="errors"/>
         </v-filter>
 
         <v-block :title="blockTitle" :loading="isLoading" :allow-fullscreen="true" :has-errors="hasErrors">
@@ -80,6 +80,7 @@
     import Vue from 'vue';
     import Vuetable from 'vuetable-2/src/components/Vuetable';
     import moment from 'moment-timezone';
+    import get from 'lodash/get';
     import escape from 'lodash/escape';
     import each from 'lodash/each';
     import isPlainObject from 'lodash/isPlainObject';
@@ -90,73 +91,74 @@
     import typeDate from './mixins/type-date';
     import ExportCsv from './Table/ExportCSV';
     import resolveRouteTitle from '../utils/routeTitleResolver';
+    import { Errors } from 'form-backend-validation';
 
     export default {
-        components: {Vuetable, VFilter, VBlock, Pagination, ExportCsv},
+        components: { Vuetable, VFilter, VBlock, Pagination, ExportCsv },
         props: {
             apiMode: {
                 type: Boolean,
-                default: true
+                default: true,
             },
             data: {
-                default: () => []
+                default: () => [],
             },
             blockTitle: {
                 type: String,
-                default: ''
+                default: '',
             },
             noDataTemplate: {
                 type: String,
             },
             dataPath: {
                 type: String,
-                default: 'data'
+                default: 'data',
             },
             paginationEnabled: {
                 type: Boolean,
-                default: true
+                default: true,
             },
             paginationPath: {
                 type: String,
-                default: ''
+                default: '',
             },
             url: String,
             columns: Array,
             filters: {
                 type: Object,
-                default: () => ({})
+                default: () => ({}),
             },
             options: {
                 type: Object,
                 default() {
                     return {
-                        exportCSV: true
+                        exportCSV: true,
                     };
-                }
+                },
             },
             searchDisabled: {
                 type: Boolean,
-                default: false
+                default: false,
             },
             perPage: {
                 type: Number,
-                default: 15
+                default: 15,
             },
             perPageOptions: {
                 type: Array,
                 default: () => [
-                    {value: 15, label: '15'},
-                    {value: 50, label: '50'},
-                    {value: 100, label: '100'}
-                ]
+                    { value: 15, label: '15' },
+                    { value: 50, label: '50' },
+                    { value: 100, label: '100' },
+                ],
             },
             filterQueryParameter: {
                 type: String,
-                default: 'filters'
+                default: 'filters',
             },
             rowClass: {
                 type: [String, Function],
-                default: ''
+                default: '',
             },
             hasErrors: Boolean,
             rowCharactersLimit: {
@@ -166,7 +168,7 @@
             loading: {
                 type: Boolean,
                 default: false,
-            }
+            },
         },
         data() {
             return {
@@ -186,7 +188,8 @@
                 originalFilters: {},
                 filtersModel: {},
                 filtersResolved: false,
-            }
+                errors: new Errors(),
+            };
         },
         computed: {
             blockId() {
@@ -222,7 +225,7 @@
                             }
 
                             return escape(value);
-                        }
+                        };
                     }
                 });
 
@@ -250,7 +253,7 @@
             },
             isLoading() {
                 return this.state.loading || this.loading;
-            }
+            },
         },
         beforeMount() {
             Object.assign(this.originalFilters, this.filters);
@@ -266,8 +269,8 @@
             stopLoading() {
                 this.state.loading = false;
                 this.$nextTick(() => {
-                    $('[data-toggle="popover"]').popover({trigger: 'hover'});
-                    $('[data-toggle="tooltip"]').tooltip()
+                    $('[data-toggle="popover"]').popover({ trigger: 'hover' });
+                    $('[data-toggle="tooltip"]').tooltip();
                 });
             },
             onPaginationData(data) {
@@ -316,6 +319,7 @@
             },
             onFilter(val) {
                 this.filtersModel = val;
+                this.errors.clear(null);
 
                 this.reload();
 
@@ -333,8 +337,15 @@
                 this.$emit('perPageChanged', this.perPageModel);
             },
             handleLoadError(response) {
+                // Validation error
+                const status = get(response, 'response.status');
+
+                if (status === 422) {
+                    this.errors.record(get(response, 'response.data.errors', {}));
+                }
+
                 this.$emit('loadError', response);
-            }
+            },
         },
         mounted() {
             $('.table-responsive').on('shown.bs.dropdown', function (e) {
@@ -351,7 +362,7 @@
                     t.css('overflow', 'visible');
                 }
             }).on('hidden.bs.dropdown', function () {
-                $(this).css({'padding-bottom': '', 'overflow': ''});
+                $(this).css({ 'padding-bottom': '', 'overflow': '' });
             });
         },
         i18n: {
@@ -366,7 +377,7 @@
                 },
             },
         },
-    }
+    };
 </script>
 
 <style scoped>
