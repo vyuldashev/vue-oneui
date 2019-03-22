@@ -74,13 +74,13 @@
 </template>
 
 <script>
-    import {settings} from '../../index';
+    import { settings } from '../../index';
     import forEach from 'lodash/forEach';
 
     import VBlock from '../Block';
 
     export default {
-        components: {VBlock},
+        components: { VBlock },
         props: {
             title: {
                 type: String,
@@ -89,20 +89,20 @@
             loading: Boolean,
             disabled: {
                 type: Boolean,
-                default: false
-            }
+                default: false,
+            },
         },
         data: () => ({
             initialForm: {},
             searchHelper: {
-                isOpen: false
+                isOpen: false,
             },
             settings: settings.table,
         }),
         computed: {
             blockTitle() {
                 return this.title ? this.title : this.$t('search');
-            }
+            },
         },
         created() {
             Object.assign(this.initialForm, this.form);
@@ -117,7 +117,7 @@
                     }
                 });
 
-                this.$router.push({path: this.$route.path, query: query});
+                this.$router.push({ path: this.$route.path, query: query });
 
                 this.$emit('onFilter', this.form);
             },
@@ -125,30 +125,27 @@
                 forEach(this.form, (value, key) => {
                     if (this.initialForm.hasOwnProperty(key)) {
                         this.form[key] = this.initialForm[key];
-                    }
-                    else {
+                    } else {
                         this.form[key] = '';
                     }
                 });
 
-                this.$router.push({path: this.$route.path});
+                this.$router.push({ path: this.$route.path });
 
-                this.$nextTick(() => {
-                    this.$emit('onFilterReset');
-                });
+                this.$emit('onFilterReset', this.form);
             },
             openSearchHelper() {
                 this.searchHelper.isOpen = true;
             },
             closeSearchHelper() {
                 this.searchHelper.isOpen = false;
-            }
+            },
         },
         mounted() {
             $(this.$refs.hint).popover({
                 content: 'Для того, чтобы расширить результаты поиска, укажите % в поисковой строке перед и после поисковым запросом',
                 trigger: 'hover',
-                placement: 'left'
+                placement: 'left',
             });
         },
         i18n: {
@@ -163,7 +160,7 @@
                 },
             },
         },
-    }
+    };
 </script>
 
 <style scoped>

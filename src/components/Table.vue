@@ -325,10 +325,10 @@
 
                 this.$emit('filter', this.filtersModel);
             },
-            onFilterReset() {
-                this.resolveFilters();
+            onFilterReset(val) {
+                this.filtersModel = val;
                 this.errors.clear(null);
-                
+
                 this.reload();
 
                 this.$emit('filterReset');
