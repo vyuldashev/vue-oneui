@@ -325,8 +325,8 @@
 
                 this.$emit('filter', this.filtersModel);
             },
-            onFilterReset(val) {
-                this.filtersModel = val;
+            onFilterReset() {
+                Object.assign(this.filters, this.originalFilters);
                 this.errors.clear(null);
 
                 this.reload();
