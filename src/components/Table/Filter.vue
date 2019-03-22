@@ -132,7 +132,7 @@
 
                 this.$router.push({ path: this.$route.path });
 
-                this.$emit('onFilterReset', this.form);
+                this.$emit('onFilterReset');
             },
             openSearchHelper() {
                 this.searchHelper.isOpen = true;
