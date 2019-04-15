@@ -109,6 +109,6 @@ export const settings = {
     timezone: 'UTC',
     language: 'en',
     table: {
-        showSearchHelper: true,
+
     }
 };
