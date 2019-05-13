@@ -1,9 +1,3 @@
-<style scoped>
-    nav#sidebar {
-        overflow-y: auto;
-    }
-</style>
-
 <template>
     <nav id="sidebar">
         <div id="sidebar-scroll">
@@ -30,21 +24,21 @@
 </template>
 
 <script>
-    import {mapState} from 'vuex';
+    import { mapState } from 'vuex';
 
     import Factory from './Sidebar/Factory';
 
     export default {
-        components: {Factory},
+        components: { Factory },
         props: {
             items: {
                 type: Array,
-                default: []
-            }
+                default: [],
+            },
         },
         computed: {
             ...mapState({
-                user: state => state.auth.user
+                user: state => state.auth.user,
             }),
             filtered() {
                 const scope = this;
@@ -55,14 +49,20 @@
 
                 return this.items.map(copy).filter(function allowed(element) {
                     if (element.hasOwnProperty('route')) {
-                        const {route} = scope.$router.resolve(element.route);
+                        const { route } = scope.$router.resolve(element.route);
 
-
-                        // move to some function hasAccess(route)
                         if (route.hasOwnProperty('meta') && route.meta.hasOwnProperty('permission')) {
-                            return scope.user.permissions.indexOf(route.meta.permission) !== -1
-                                || route.meta.permission === 'auth'
-                                || route.meta.permission === 'public';
+                            const permission = route.meta.permission;
+
+                            if (typeof permission === 'function') {
+                                return permission(scope.user);
+                            }
+
+                            if (typeof permission === 'string') {
+                                return scope.user.permissions.contains(permission)
+                                    || permission === 'auth'
+                                    || permission === 'public';
+                            }
                         }
 
                         return false;
@@ -78,7 +78,13 @@
 
                     return false;
                 });
-            }
-        }
-    }
+            },
+        },
+    };
 </script>
+
+<style scoped>
+    nav#sidebar {
+        overflow-y: auto;
+    }
+</style>
