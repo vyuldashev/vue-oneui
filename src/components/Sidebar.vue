@@ -59,7 +59,7 @@
                             }
 
                             if (typeof permission === 'string') {
-                                return scope.user.permissions.contains(permission)
+                                return scope.user.permissions.indexOf(permission) !== -1
                                     || permission === 'auth'
                                     || permission === 'public';
                             }
