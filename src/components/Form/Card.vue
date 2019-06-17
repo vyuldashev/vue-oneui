@@ -18,7 +18,7 @@
                            @input="numberChanged($event.target.value)"
                            type="text"
                            placeholder="0000 0000 0000 0000"
-                           maxlength="22"
+                           maxlength="23"
                            autocomplete="off"
                     >
 
@@ -72,12 +72,12 @@
             <div class="form-group">
                 <label>{{ $t('number') }}</label>
 
-                <input :value="value.number"
+                <input :value="numberFormatted"
                        @input="numberChanged($event.target.value)"
                        class="form-control"
                        type="text"
                        placeholder="0000 0000 0000 0000"
-                       maxlength="22"
+                       maxlength="23"
                        autocomplete="off"
                 >
             </div>
