@@ -18,7 +18,7 @@
                            @input="numberChanged($event.target.value)"
                            type="text"
                            placeholder="0000 0000 0000 0000"
-                           maxlength="22"
+                           maxlength="23"
                            autocomplete="off"
                     >
 
