@@ -19,11 +19,6 @@
 <script>
     import moment from 'moment';
 
-    const formats = {
-        display: 'DD.MM.YYYY',
-        broadcast: 'DD.MM.YYYY HH:mm:ss'
-    };
-
     export default {
         props: {
             disabled: {
@@ -57,13 +52,20 @@
             hasErrors: Boolean,
             error: String,
             startOfDay: Boolean,
-            endOfDay: Boolean
+            endOfDay: Boolean,
+            formats: {
+                type: Object,
+                default: () => ({
+                    display: 'DD.MM.YYYY',
+                    broadcast: 'DD.MM.YYYY HH:mm:ss'
+                }),
+            },
         },
         computed: {
             text() {
                 if (this.value === '') return '';
 
-                return moment(this.value, formats.broadcast).format(formats.display);
+                return moment(this.value, this.formats.broadcast).format(this.formats.display);
             }
         },
         methods: {
@@ -82,7 +84,7 @@
         mounted() {
             $(this.$refs.input)
                 .datepicker({
-                    format: 'dd.mm.yyyy',
+                    format: this.formats.display,
                     autoclose: true,
                     todayHighlight: true,
                     startDate: this.minDate,
